@@ -1,0 +1,24 @@
+.advantages {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &_item {
+        width: 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        img {
+            width: 80px;
+            height: 80px;
+        }
+    }
+
+    &_description {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}

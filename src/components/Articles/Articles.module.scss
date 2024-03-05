@@ -1,0 +1,44 @@
+.article_block {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 800;
+}
+
+.article {
+    position: relative;
+
+    img {
+        height: 300px;
+        width: 420px;
+    }
+
+    &_text {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    &_title {
+        font-size: 25px;
+        width: 250px;
+        height: 100px;
+    }
+
+    &_btn {
+        color: var(--white);
+        max-width: fit-content;
+        padding: 8px 25px;
+        font-weight: var(--fw-700);
+        border-radius: 50px;
+        transition: var(--transition-1);
+        background-color: var(--portland-orange);
+
+        &:hover {
+            background-color: var(--black);
+            transition: 0.3s ease;
+        }
+    }
+}

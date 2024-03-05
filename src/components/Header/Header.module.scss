@@ -1,0 +1,36 @@
+header {
+    color: var(--white);
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.container {
+    background-color: rgba(249, 148, 42, 1);
+    transition: background-color 0.3s ease; /* Добавляем плавный переход цвета фона */
+}
+
+.scrolled {
+    background-color: #fff; /* Изменяем цвет фона навигационной панели при прокрутке */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Добавляем тень для эффекта поднятия */
+    color: #000; /* Изменяем цвет текста при прокрутке */
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 10px 5px 100px;
+
+    ul {
+        display: flex;
+        gap: 40px;
+    }
+
+    a {
+        color: var(--white);
+        &:hover {
+            color: var(--portland-orange);
+            transition: 0.2s ease;
+        }
+    }
+}
