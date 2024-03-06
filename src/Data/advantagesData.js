@@ -9,25 +9,25 @@ const advantages = [
         id: 2,
         src: 'src/assets/advantages/delivery.svg',
         title: 'Быстрая доставка',
-        description: 'Доставим вашу покупку быстро',
+        description: 'При оформлении заказа с 12:00 до 18:00',
     },
     {
         id: 3,
         src: 'src/assets/advantages/app.svg',
-        title: 'Быстрая доставка',
-        description: 'Доставим вашу покупку быстро',
+        title: 'Удобное приложение',
+        description: 'Заказывайте через мобильное приложение',
     },
     {
         id: 4,
         src: 'src/assets/advantages/grooming.svg',
-        title: 'Груминг',
+        title: 'Груминг салоны',
         description: 'Придадим форму вашему другу',
     },
     {
         id: 5,
         src: 'src/assets/advantages/pickup.svg',
-        title: 'Быстрая доставка',
-        description: 'Доставим вашу покупку быстро',
+        title: 'Самовывоз заказа',
+        description: 'Через 30 мин из магазина',
     },
 ]
 export default advantages

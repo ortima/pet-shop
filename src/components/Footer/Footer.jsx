@@ -64,6 +64,7 @@ const Footer = () => {
                     <ul className={styles.text}>
                         <li>Товары для кошек</li>
                         <li>Товары для собак</li>
+                        <li>Товары для рыбок</li>
                     </ul>
                 </div>
                 <div>
