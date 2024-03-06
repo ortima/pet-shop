@@ -2,6 +2,12 @@
     display: flex;
     justify-content: space-between;
     font-weight: 800;
+
+    @media (max-width: 1024px) {
+        // flex-direction: column;
+        // align-items: center;
+        // gap: 20px;
+    }
 }
 
 .article {
@@ -10,6 +16,15 @@
     img {
         height: 300px;
         width: 420px;
+
+        @media (max-width: 1400px) {
+            height: 250px;
+            width: 300px;
+        }
+        @media (max-width: 1250px) {
+            height: 200px;
+            width: 250px;
+        }
     }
 
     &_text {
@@ -19,17 +34,30 @@
         display: flex;
         flex-direction: column;
         gap: 25px;
+
+        @media (max-width: 1250px) {
+            gap: 10px;
+        }
     }
 
     &_title {
         font-size: 25px;
         width: 250px;
         height: 100px;
+        @media (max-width: 1400px) {
+            font-size: 20px;
+            width: 150px;
+        }
+
+        @media (max-width: 1250px) {
+            height: 75px;
+            font-size: 15px;
+        }
     }
 
     &_btn {
         color: var(--white);
-        max-width: fit-content;
+        width: fit-content;
         padding: 8px 25px;
         font-weight: var(--fw-700);
         border-radius: 50px;
@@ -39,6 +67,14 @@
         &:hover {
             background-color: var(--black);
             transition: 0.3s ease;
+        }
+
+        @media (max-width: 1400px) {
+            font-size: 20px;
+        }
+
+        @media (max-width: 1250px) {
+            font-size: 15px;
         }
     }
 }

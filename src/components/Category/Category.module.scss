@@ -18,6 +18,12 @@
         transition: all 0.5s ease-out;
         overflow: hidden;
 
+        a {
+            @media (max-width: 1250px) {
+                font-size: 14px;
+            }
+        }
+
         &:hover {
             img {
                 transform: scale(1.1);
@@ -34,6 +40,16 @@
             width: 250px;
             align-self: center;
             transition: transform 0.5s ease-in-out;
+
+            @media (max-width: 1400px) {
+                height: 200px;
+                width: 200px;
+            }
+
+            @media (max-width: 1250px) {
+                height: 150px;
+                width: 150px;
+            }
         }
     }
 }

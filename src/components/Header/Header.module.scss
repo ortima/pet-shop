@@ -6,7 +6,7 @@ header {
 
 .container {
     background-color: rgba(249, 148, 42, 1);
-    transition: background-color 0.3s ease; /* Добавляем плавный переход цвета фона */
+    transition: background-color 0.3s ease;
 }
 
 .scrolled {
@@ -20,6 +20,7 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 40px 10px 5px 100px;
+    width: 90%;
 
     ul {
         display: flex;
