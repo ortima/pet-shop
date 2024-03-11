@@ -17,7 +17,7 @@ const FAQList = () => {
             <img src="src\assets\logo.png" alt="logo" />
             <div className={styles.content}>
                 <h1>
-                    Почему выбирают зоомагазин <span>«Природа?</span>
+                    Почему выбирают зоомагазин <span>«Природа» </span>?
                 </h1>
                 <p className={styles.subtitle}>
                     «Природа» – крупнейшая сеть зоомагазинов и интернет-магазин
