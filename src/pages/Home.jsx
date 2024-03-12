@@ -9,20 +9,20 @@ import '../index.css'
 import Advantages from '../components/Advantages/Advantages'
 
 const Home = () => {
-    return (
-        <div>
-            <Header />
-            {/* wrapper - контейнер в index.css */}
-            <main className="wrapper">
-                <Category />
-                <Articles />
-                <Products />
-                <FAQList />
-                <Advantages />
-            </main>
-            <Footer />
-        </div>
-    )
+  return (
+    <div>
+      <Header />
+      {/* wrapper - контейнер в index.css */}
+      <main className="wrapper">
+        <Category />
+        <Articles />
+        <Products />
+        <FAQList />
+        <Advantages />
+      </main>
+      <Footer />
+    </div>
+  )
 }
 
 export default Home
