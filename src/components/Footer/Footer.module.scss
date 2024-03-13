@@ -1,58 +1,59 @@
 .footer {
-    background-image: url('../../assets/footer/footer-bg.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-height: 400px;
-    display: flex;
-    align-items: center;
-    color: white;
-    margin-top: 30px;
+  background-image: url('../../assets/footer/footer-bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 400px;
+  color: white;
+  margin-top: 60px;
+
+  position: relative;
 }
 .container {
-    display: grid;
-    grid-template-columns: 2fr repeat(3, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 10px;
-    grid-row-gap: 0px;
-    padding-top: 40px;
+  position: absolute;
+  top: 60px;
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 0px;
 
-    width: 90%;
-    margin: 0 auto;
+  width: 100%;
+  padding-inline: 40px;
 }
 
 .brand {
-    font-size: 60px;
+  font-size: 60px;
 }
 
 .text {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    font-size: 16px;
-    padding-left: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 16px;
+  padding-left: 2px;
 }
 
 .title {
-    font-size: 30px;
-    margin-bottom: 10px;
-    font-weight: 800;
+  font-size: 30px;
+  margin-bottom: 10px;
+  font-weight: 800;
 }
 
 .link {
-    color: var(--portland-orange);
+  color: var(--portland-orange);
 }
 
 .links {
-    display: flex;
-    gap: 5px;
+  display: flex;
+  gap: 5px;
 }
 
 .feedback {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    input {
-        border-radius: 5px solid;
-        height: 30px;
-    }
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  input {
+    border-radius: 5px solid;
+    height: 30px;
+  }
 }

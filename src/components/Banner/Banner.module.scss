@@ -1,42 +1,43 @@
 .banner {
-    min-height: 650px;
-    background-image: url('/src/assets/hero-banner.jpg');
-    background-size: cover;
-    background-position: left;
-    position: relative;
+  min-height: 600px;
+  width: 100%;
+  background-image: url('/src/assets/hero-banner.jpg');
+  background-size: cover;
+  background-position: left;
+  position: relative;
 }
 
 .text {
-    position: absolute;
-    left: 80px;
-    top: 150px;
+  position: absolute;
+  left: 80px;
+  top: 150px;
 
-    font-family: 'Pacifico', cursive;
-    color: var(--white);
-    div {
-        font-size: 80px;
-    }
+  font-family: 'Pacifico', cursive;
+  color: var(--white);
+  div {
+    font-size: 80px;
+  }
 
-    p {
-        padding-left: 110px;
-        font-size: 50px;
-    }
+  p {
+    padding-left: 110px;
+    font-size: 50px;
+  }
 }
 
 .banner_link {
-    position: absolute;
-    left: 200px;
-    bottom: -90px;
+  position: absolute;
+  left: 200px;
+  bottom: -90px;
 
-    background-color: var(--black);
-    color: var(--white);
-    max-width: max-content;
-    padding: 8px 25px;
-    font-weight: var(--fw-700);
-    border-radius: 50px;
-    transition: var(--transition-1);
+  background-color: var(--black);
+  color: var(--white);
+  max-width: max-content;
+  padding: 8px 25px;
+  font-weight: var(--fw-700);
+  border-radius: 50px;
+  transition: var(--transition-1);
 
-    &:hover {
-        background-color: var(--portland-orange);
-    }
+  &:hover {
+    background-color: var(--portland-orange);
+  }
 }

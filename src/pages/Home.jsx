@@ -5,23 +5,28 @@ import Articles from '../components/Articles/Articles'
 import Products from '../components/Products/Products'
 import FAQList from '../components/FAQ/FAQList'
 import Footer from '../components/Footer/Footer'
-import '../index.css'
+import Banner from '../components/Banner/Banner'
 import Advantages from '../components/Advantages/Advantages'
+
+import '../index.css'
 
 const Home = () => {
   return (
-    <div>
+    <>
       <Header />
-      {/* wrapper - контейнер в index.css */}
-      <main className="wrapper">
+
+      <Banner />
+
+      <main className="container">
         <Category />
         <Articles />
         <Products />
         <FAQList />
         <Advantages />
       </main>
+
       <Footer />
-    </div>
+    </>
   )
 }
 

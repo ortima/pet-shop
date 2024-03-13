@@ -1,77 +1,72 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin: 50px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 
-    img {
-        margin-bottom: 20px;
-    }
+  img {
+    margin-bottom: 20px;
+  }
 }
 
 .content {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-
-    h1 {
-        text-align: center;
-    }
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
 .faq_list {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 .question {
-    cursor: pointer;
-    padding: 10px;
-    background-color: #f9f9f9;
-    margin-bottom: 5px;
-    font-weight: 700;
+  cursor: pointer;
+  padding: 10px;
+  background-color: #f9f9f9;
+  margin-bottom: 5px;
+  font-weight: 700;
 
-    display: flex;
+  display: flex;
 }
 
 .arrow {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .arrow-open {
-    margin-left: 20px;
-    transform: rotate(180deg) !important;
+  margin-left: 20px;
+  transform: rotate(180deg) !important;
 }
 
 .answer {
-    padding: 12px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-top: 5px;
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, opacity 0.3s ease;
+  padding: 12px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 5px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
 }
 
 .faq-item.open .answer {
-    max-height: 1000px;
-    opacity: 1;
-    transition: max-height 0.3s ease, opacity 0.5s ease-in-out;
+  max-height: 1000px;
+  opacity: 1;
+  transition: max-height 0.3s ease, opacity 0.5s ease-in-out;
 }
 
 .faq-item {
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    max-height: 50px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  max-height: 50px;
 }
 
 .faq-item.open {
-    max-height: 500px;
+  max-height: 500px;
 }
