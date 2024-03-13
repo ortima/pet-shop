@@ -1,11 +1,25 @@
+import { useEffect, useState } from 'react'
 import styles from './Header.module.scss'
-
 import { MdOutlineShoppingBag } from 'react-icons/md'
 import { TbLogin2 } from 'react-icons/tb'
 
-const Header = () => {
+const Header = ({ quantity }) => {
+  const [isSticky, setIsSticky] = useState(false)
+
+  useEffect(() => {
+    const Scroll = () => {
+      window.scrollY > 500 ? setIsSticky(true) : setIsSticky(false)
+    }
+
+    window.addEventListener('scroll', Scroll)
+
+    return () => {
+      window.removeEventListener('scroll', Scroll)
+    }
+  }, [])
+
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${isSticky ? styles.sticky : ''}`}>
       <div className={styles.container}>
         <div className={styles.logo}>
           <a href="#">Зоомагазин "Природа"</a>
@@ -33,7 +47,7 @@ const Header = () => {
           </button>
           <button className="actions-btn cart" aria-label="cart">
             <MdOutlineShoppingBag size={30} />
-            <span className={styles.badge}>0</span>
+            <span className={styles.badge}>{quantity}</span>
           </button>
         </div>
       </div>

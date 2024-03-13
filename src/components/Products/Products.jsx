@@ -4,8 +4,13 @@ import products from '../../Data/productsData'
 
 import { IoBagAddOutline } from 'react-icons/io5'
 
-const Products = () => {
+const Products = ({ setQuantity, quantity }) => {
   const [isHovered, setIsHovered] = useState(false)
+
+  const AddToCart = (product) => {
+    setQuantity(quantity + 1)
+    console.log('Товар добавлен в корзину!', product)
+  }
 
   return (
     <section className={styles.products}>
@@ -29,7 +34,12 @@ const Products = () => {
                 }
                 alt={product.name}
               />
-              <button className={styles.card_btn}>
+              <button
+                className={styles.card_btn}
+                onClick={() => {
+                  AddToCart(product)
+                }}
+              >
                 <IoBagAddOutline size={20} className={styles.svg_button} />
               </button>
             </div>
