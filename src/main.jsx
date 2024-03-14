@@ -7,6 +7,8 @@ import {
   Route,
   Link,
 } from 'react-router-dom'
+import NotFound from './pages/NotFound'
+import Catalog from './pages/Catalog'
 
 const router = createBrowserRouter([
   {
@@ -15,11 +17,19 @@ const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <div>Not Found</div>,
+    element: <NotFound />,
   },
   {
     path: '/catalog',
-    element: <div>Catalog</div>,
+    element: <Catalog />,
+  },
+  {
+    path: '/blog',
+    element: <div>Blog</div>,
+  },
+  {
+    path: '/contacts',
+    element: <div>Contacts</div>,
   },
 ])
 

@@ -3,6 +3,7 @@ import styles from './Products.module.scss'
 import products from '../../Data/productsData'
 
 import { IoBagAddOutline } from 'react-icons/io5'
+import AlertAddCart from '../Blocks/AlertAdd/AlertAddCart'
 
 const Products = ({ setQuantity, quantity }) => {
   const [isHovered, setIsHovered] = useState(false)

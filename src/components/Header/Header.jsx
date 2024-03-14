@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react'
 import styles from './Header.module.scss'
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+
 import { MdOutlineShoppingBag } from 'react-icons/md'
 import { TbLogin2 } from 'react-icons/tb'
 
@@ -22,21 +24,21 @@ const Header = ({ quantity }) => {
     <header className={`${styles.header} ${isSticky ? styles.sticky : ''}`}>
       <div className={styles.container}>
         <div className={styles.logo}>
-          <a href="#">Зоомагазин "Природа"</a>
+          <Link to="#">Зоомагазин "Природа"</Link>
         </div>
         <nav className={styles.navbar}>
           <ul>
             <li>
-              <a href="#">Главная</a>
+              <Link to="/">Главная</Link>
             </li>
             <li>
-              <a href="#">Товары</a>
+              <Link to="catalog">Товары</Link>
             </li>
             <li>
-              <a href="#">Блог</a>
+              <Link to="blog">Блог</Link>
             </li>
             <li>
-              <a href="#">Контакты</a>
+              <Link to="contacts">Контакты</Link>
             </li>
           </ul>
         </nav>
