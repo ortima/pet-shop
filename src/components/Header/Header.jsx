@@ -1,12 +1,14 @@
 import styles from './Header.module.scss'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import { AppContext } from '../../context/AppContext'
 import { Link } from 'react-router-dom'
-
 import { MdOutlineShoppingBag } from 'react-icons/md'
 import { TbLogin2 } from 'react-icons/tb'
 
-const Header = ({ quantity }) => {
+const Header = () => {
   const [isSticky, setIsSticky] = useState(false)
+  const { quantity } = useContext(AppContext)
+  console.log(quantity)
 
   useEffect(() => {
     const Scroll = () => {
@@ -47,13 +49,10 @@ const Header = ({ quantity }) => {
           <button className="actions-btn" aria-label="LogIn">
             <TbLogin2 size={30} />
           </button>
-          <button className="actions-btn cart" aria-label="cart">
-            <Link to="/cart">
-              {' '}
-              <MdOutlineShoppingBag size={30} />
-              <span className={styles.badge}>{quantity}</span>
-            </Link>
-          </button>
+          <Link to="/cart" className="actions-btn cart" aria-label="cart">
+            <MdOutlineShoppingBag size={30} />
+            {quantity > 0 && <span className={styles.badge}>{quantity}</span>}
+          </Link>
         </div>
       </div>
     </header>

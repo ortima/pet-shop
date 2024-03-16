@@ -1,15 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import styles from './Products.module.scss'
 import products from '../../Data/productsData'
-
+import { AppContext } from '../../context/AppContext'
 import { IoBagAddOutline } from 'react-icons/io5'
-import AlertAddCart from '../Blocks/AlertAdd/AlertAddCart'
 
-const Products = ({ setQuantity, quantity }) => {
+const Products = () => {
   const [isHovered, setIsHovered] = useState(false)
+  const { cartItem, setCartItem, quantity, setQuantity } =
+    useContext(AppContext)
 
-  const AddToCart = (product) => {
+  const addToCart = (product) => {
     setQuantity(quantity + 1)
+
+    const existingItem = cartItem.find((item) => item.id === product.id)
+    if (existingItem) {
+      // Если карточка уже есть в корзине, увеличиваем ее количество
+      const updatedCart = cartItem.map((item) =>
+        item.id === existingItem.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+      setCartItem(updatedCart)
+    } else {
+      // Если карточки нет в корзине, добавляем ее
+      setCartItem([...cartItem, { ...product, quantity: 1 }])
+    }
     console.log('Товар добавлен в корзину!', product)
   }
 
@@ -38,7 +53,7 @@ const Products = ({ setQuantity, quantity }) => {
               <button
                 className={styles.card_btn}
                 onClick={() => {
-                  AddToCart(product)
+                  addToCart(product)
                 }}
               >
                 <IoBagAddOutline size={20} className={styles.svg_button} />

@@ -1,38 +1,32 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import { createRoot } from 'react-dom/client'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import NotFound from './pages/NotFound'
 import Catalog from './pages/Catalog'
 import CartPage from './pages/CartPage'
+import { AppContext } from './context/AppContext'
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Home />,
-  },
-  {
-    path: '*',
-    element: <NotFound />,
-  },
-  {
-    path: 'catalog',
-    element: <Catalog />,
-  },
-  {
-    path: 'blog',
-    element: <div>Blog</div>,
-  },
-  {
-    path: 'contacts',
-    element: <div>Contacts</div>,
-  },
-  {
-    path: 'cart',
-    element: <CartPage />,
-  },
-])
+const App = () => {
+  const [quantity, setQuantity] = useState(0)
+  const [cartItem, setCartItem] = useState([])
 
-createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router} />
-)
+  return (
+    <AppContext.Provider
+      value={{ quantity, setQuantity, cartItem, setCartItem }}
+    >
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="catalog" element={<Catalog />} />
+          <Route path="blog" element={<div>Blog</div>} />
+          <Route path="contacts" element={<div>Contacts</div>} />
+          <Route path="cart" element={<CartPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </AppContext.Provider>
+  )
+}
+
+createRoot(document.getElementById('root')).render(<App />)

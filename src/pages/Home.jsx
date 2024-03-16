@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Header from '../components/Header/Header'
 import Category from '../components/Category/Category'
 import Articles from '../components/Articles/Articles'
@@ -9,18 +9,18 @@ import Banner from '../components/Banner/Banner'
 import Advantages from '../components/Advantages/Advantages'
 
 import '../index.css'
+
 const Home = () => {
-  const [quantity, setQuantity] = useState(0)
   return (
     <>
-      <Header quantity={quantity} />
+      <Header />
 
       <Banner />
 
       <main className="container">
         <Category />
         <Articles />
-        <Products setQuantity={setQuantity} quantity={quantity} />
+        <Products />
         <FAQList />
         <Advantages />
       </main>
