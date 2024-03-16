@@ -1,14 +1,10 @@
 import * as React from 'react'
 import { createRoot } from 'react-dom/client'
 import Home from './pages/Home'
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Link,
-} from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import NotFound from './pages/NotFound'
 import Catalog from './pages/Catalog'
+import CartPage from './pages/CartPage'
 
 const router = createBrowserRouter([
   {
@@ -20,16 +16,20 @@ const router = createBrowserRouter([
     element: <NotFound />,
   },
   {
-    path: '/catalog',
+    path: 'catalog',
     element: <Catalog />,
   },
   {
-    path: '/blog',
+    path: 'blog',
     element: <div>Blog</div>,
   },
   {
-    path: '/contacts',
+    path: 'contacts',
     element: <div>Contacts</div>,
+  },
+  {
+    path: 'cart',
+    element: <CartPage />,
   },
 ])
 

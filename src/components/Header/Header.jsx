@@ -32,13 +32,13 @@ const Header = ({ quantity }) => {
               <Link to="/">Главная</Link>
             </li>
             <li>
-              <Link to="catalog">Товары</Link>
+              <Link to="/catalog">Товары</Link>
             </li>
             <li>
-              <Link to="blog">Блог</Link>
+              <Link to="/blog">Блог</Link>
             </li>
             <li>
-              <Link to="contacts">Контакты</Link>
+              <Link to="/contacts">Контакты</Link>
             </li>
           </ul>
         </nav>
@@ -48,8 +48,11 @@ const Header = ({ quantity }) => {
             <TbLogin2 size={30} />
           </button>
           <button className="actions-btn cart" aria-label="cart">
-            <MdOutlineShoppingBag size={30} />
-            <span className={styles.badge}>{quantity}</span>
+            <Link to="/cart">
+              {' '}
+              <MdOutlineShoppingBag size={30} />
+              <span className={styles.badge}>{quantity}</span>
+            </Link>
           </button>
         </div>
       </div>
