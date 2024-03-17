@@ -1,5 +1,7 @@
+const basename = import.meta.env.BASE_URL || '/' // Используйте значение BASE_URL из import.meta.env или по умолчанию '/'
+
 const categories = [
-  { src: '/category/category-1.jpg', text: 'Еда для кошек' },
+  { src: `${basename}/category/category-1.jpg`, text: 'Еда для кошек' },
   {
     src: '/category/category-2.jpg',
     text: 'Игрушки для кошек',
