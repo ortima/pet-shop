@@ -2,6 +2,24 @@
   width: 100%;
   color: white;
   transition: top 0.5s ease;
+
+  background-color: rgba(249, 148, 42, 1);
+
+  &.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 6;
+
+    box-shadow: var(--shadow-1);
+
+    background-color: white;
+    color: var(--black);
+
+    svg {
+      color: var(--black);
+    }
+  }
 }
 
 .container {
@@ -12,11 +30,9 @@
   gap: 40px;
   justify-content: space-between;
 
-  font-weight: 700;
+  font-weight: 600;
   align-items: center;
   line-height: 2rem;
-
-  background-color: rgba(249, 148, 42, 1);
 }
 
 .logo {
@@ -49,38 +65,13 @@
 .actions {
   display: flex;
   gap: 20px;
-  padding-inline-end: 20px;
+
   svg {
-    color: white;
-    :hover {
-      transform: scale(1rem);
+    color: var(--white);
+    &:hover {
+      color: var(--portland-orange);
+      transition: 0.3s ease;
+      transform: scale(1.1);
     }
   }
-}
-
-// .actions-btn {
-//   &.cart {
-//     position: relative;
-//   }
-
-//   .badge {
-//     position: absolute;
-//     top: -8px;
-//     right: -10px;
-//     background-color: var(--portland-orange);
-//     color: var(--white);
-//     font-size: var(--fs-8);
-//     min-width: 18px;
-//     height: 18px;
-//     line-height: 18px;
-//     border-radius: 50px;
-//   }
-// }
-
-.sticky {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 6;
 }
