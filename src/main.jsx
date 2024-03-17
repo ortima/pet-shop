@@ -15,7 +15,7 @@ const App = () => {
     <AppContext.Provider
       value={{ quantity, setQuantity, cartItem, setCartItem }}
     >
-      <BrowserRouter basename="pet-shop">
+      <BrowserRouter basename={import.meta.env.BASE_URL || '/'}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="catalog" element={<Catalog />} />

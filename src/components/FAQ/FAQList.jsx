@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import styles from './FAQ.module.scss'
 import faqData from '../../Data/faqData'
 
+import logo from '/logo.png'
+
 const FAQList = () => {
   const [isOpen, setIsOpen] = useState({})
 
@@ -14,7 +16,7 @@ const FAQList = () => {
 
   return (
     <section className={styles.container}>
-      <img src="/logo.png" alt="logo" />
+      <img src={logo} alt="logo" />
       <div className={styles.content}>
         <h1>
           Почему выбирают зоомагазин <span>«Природа» </span>?
