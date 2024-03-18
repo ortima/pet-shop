@@ -1,10 +1,10 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import { AppContext } from '../../context/AppContext'
 import styles from './Cart.module.scss'
 import { MdOutlineDelete } from 'react-icons/md'
 import { AiOutlineLike } from 'react-icons/ai'
 
-const Cart = () => {
+const Cart = React.forwardRef((props, ref) => {
   const { cartItem, setCartItem, quantity, setQuantity } =
     useContext(AppContext)
 
@@ -50,12 +50,12 @@ const Cart = () => {
   )
 
   return (
-    <div className={styles.shopping_cart}>
-      <div className={styles.title}>Корзина</div>
+    <section className={styles.shopping_cart} tabIndex={-1} ref={ref}>
+      <div className={styles.title}>Корзина товаров</div>
 
       {cartItem.map((item, index) => (
         <div className={styles.item} key={index}>
-          <div className={styles.button}>
+          <div className={styles.actions}>
             <span
               className={styles.delete_btn}
               onClick={() => removeItem(item.id, item.quantity)}
@@ -72,20 +72,11 @@ const Cart = () => {
           </div>
 
           <div className={styles.description}>
-            <span>{item.name}</span>
-            <span>{item.description}</span>
+            <p className={styles.name}>{item.name}</p>
             <span>{item.price}$</span>
           </div>
 
           <div className={styles.quantity}>
-            <button
-              className={styles.plus}
-              type="button"
-              onClick={() => increaseQuantity(item.id)}
-            >
-              +
-            </button>
-            <div style={{ textAlign: 'center' }}>{item.quantity}</div>
             <button
               className={styles.minus}
               type="button"
@@ -93,23 +84,46 @@ const Cart = () => {
             >
               -
             </button>
+
+            <div className={styles.counter}>{item.quantity}</div>
+            <button
+              className={styles.plus}
+              type="button"
+              onClick={() => increaseQuantity(item.id)}
+            >
+              +
+            </button>
           </div>
 
-          <div className={styles.total}>${item.price * item.quantity}</div>
+          <div className={styles.total}>{item.price * item.quantity}$</div>
         </div>
       ))}
-
-      <div>Всего товаров в корзине: {quantity}</div>
-      <div>Общая сумма: {totalAmount}$</div>
-      <button
-        onClick={() => {
-          setCartItem([]), setQuantity(0)
-        }}
-      >
-        Очистить корзину
-      </button>
-    </div>
+      <div className={styles.check}>
+        <div className={styles.check_text}>
+          <p>Количество товаров:</p>
+          <p>Общая сумма:</p>
+        </div>
+        <div className={styles.sum}>
+          <p>{quantity}</p>
+          <p>{totalAmount}$</p>
+        </div>
+      </div>
+      <div className={styles.buttons}>
+        <button
+          type="button"
+          className={styles.btn_actions}
+          onClick={() => {
+            setCartItem([]), setQuantity(0)
+          }}
+        >
+          Очистить корзину
+        </button>
+        <button type="button" className={styles.btn_actions}>
+          Оформить заказ
+        </button>
+      </div>
+    </section>
   )
-}
+})
 
 export default Cart

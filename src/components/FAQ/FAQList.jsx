@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styles from './FAQ.module.scss'
 import faqData from '../../Data/faqData'
 
-import logo from '/logo.png'
+import logo from '/logo_test.png'
 
 const FAQList = () => {
   const [isOpen, setIsOpen] = useState({})
@@ -19,7 +19,7 @@ const FAQList = () => {
       <img src={logo} alt="logo" />
       <div className={styles.content}>
         <h1>
-          Почему выбирают зоомагазин <span>«Природа» </span>?
+          Почему выбирают зоомагазин <span>«Природа»</span>?
         </h1>
         <p className={styles.subtitle}>
           «Природа» – крупнейшая сеть зоомагазинов и интернет-магазин с
