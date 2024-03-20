@@ -6,6 +6,7 @@ import NotFound from './pages/NotFound'
 import Catalog from './pages/Catalog'
 import CartPage from './pages/CartPage'
 import { AppContext } from './context/AppContext'
+import ContactsPage from './pages/ContactsPage'
 
 const App = () => {
   const [quantity, setQuantity] = useState(0)
@@ -20,7 +21,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="catalog" element={<Catalog />} />
           <Route path="blog" element={<div>Blog</div>} />
-          <Route path="contacts" element={<div>Contacts</div>} />
+          <Route path="contacts" element={<ContactsPage />} />
           <Route path="cart" element={<CartPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
