@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import styles from './FAQ.module.scss'
 import faqData from '../../Data/faqData'
 

@@ -1,8 +1,7 @@
-import React from 'react'
 import styles from './Category.module.scss'
 import categories from '../../Data/categoriesData'
 
-const Category = ({}) => {
+const Category = () => {
   return (
     <section className={styles.category}>
       <h1>

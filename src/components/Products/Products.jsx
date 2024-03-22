@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import { useState, useContext } from 'react'
 import styles from './Products.module.scss'
 import products from '../../Data/productsData'
 import { AppContext } from '../../context/AppContext'
@@ -14,7 +14,6 @@ const Products = () => {
 
     const existingItem = cartItem.find((item) => item.id === product.id)
     if (existingItem) {
-      // Если карточка уже есть в корзине, увеличиваем ее количество
       const updatedCart = cartItem.map((item) =>
         item.id === existingItem.id
           ? { ...item, quantity: item.quantity + 1 }
@@ -22,7 +21,6 @@ const Products = () => {
       )
       setCartItem(updatedCart)
     } else {
-      // Если карточки нет в корзине, добавляем ее
       setCartItem([...cartItem, { ...product, quantity: 1 }])
     }
     console.log('Товар добавлен в корзину!', product)
@@ -58,10 +56,10 @@ const Products = () => {
               >
                 <IoBagAddOutline size={20} className={styles.svg_button} />
               </button>
-            </div>
-            <div className={styles.products_details}>
-              <div>{product.name}</div>
-              <div>{product.price}$</div>
+              <div className={styles.products_details}>
+                <div>{product.name}</div>
+                <div>{product.price}$</div>
+              </div>
             </div>
           </div>
         ))}

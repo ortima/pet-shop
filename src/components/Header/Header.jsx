@@ -2,6 +2,7 @@ import styles from './Header.module.scss'
 import { useEffect, useState, useContext } from 'react'
 import { AppContext } from '../../context/AppContext'
 import { Link } from 'react-router-dom'
+
 import { MdOutlineShoppingBag } from 'react-icons/md'
 import { TbLogin2 } from 'react-icons/tb'
 
@@ -26,7 +27,7 @@ const Header = () => {
     <header className={`${styles.header} ${isSticky ? styles.sticky : ''}`}>
       <div className={styles.container}>
         <div className={styles.logo}>
-          <Link to="#">Зоомагазин "Природа"</Link>
+          <Link to="#">Зоомагазин &quot;Природа&quot;</Link>
         </div>
         <nav className={styles.navbar}>
           <ul>

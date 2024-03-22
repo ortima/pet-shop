@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './Articles.module.scss'
 import articles from '../../Data/articlesData'
 

@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './Contacts.module.scss'
 import { BsGeoAltFill, BsTelephone } from 'react-icons/bs'
 import { IoIosMail } from 'react-icons/io'

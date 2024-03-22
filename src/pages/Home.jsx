@@ -1,4 +1,3 @@
-import React from 'react'
 import Header from '../components/Header/Header'
 import Category from '../components/Category/Category'
 import Articles from '../components/Articles/Articles'

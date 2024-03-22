@@ -9,12 +9,14 @@
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);
     grid-column-gap: 20px;
-    grid-row-gap: 20px;
+    grid-row-gap: 30px;
   }
 
   &_item {
     text-align: center;
     width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   &_image {
@@ -69,6 +71,7 @@
 
 .image_container {
   position: relative;
+  width: fit-content;
   &:hover .card_btn {
     opacity: 1;
     transition: 0.5s ease;
