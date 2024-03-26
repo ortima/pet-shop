@@ -11,12 +11,13 @@ import {
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyBJ6RqnFQBJYDBGkcrU5Asz8VhfUhMrv9E',
-  authDomain: 'pet-shop-react.firebaseapp.com',
-  projectId: 'pet-shop-react',
-  storageBucket: 'pet-shop-react.appspot.com',
-  messagingSenderId: '280887780926',
-  appId: '1:280887780926:web:3ed16e1de2ca1c9d75936f',
+  apiKey: import.meta.env.VITE_REACT_APP_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_REACT_APP_FIREBASE_API_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env
+    .VITE_REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_REACT_APP_FIREBASE_APP_ID,
 }
 
 // Initialize Firebase

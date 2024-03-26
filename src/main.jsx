@@ -24,7 +24,7 @@ const App = () => {
         value={{ quantity, setQuantity, cartItem, setCartItem }}
       >
         <ThemeProvider theme={theme}>
-          <BrowserRouter basename={import.meta.env.BASE_URL || '/'}>
+          <BrowserRouter>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="catalog" element={<Catalog />} />

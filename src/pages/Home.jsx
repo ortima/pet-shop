@@ -15,7 +15,6 @@ const Home = () => {
     <>
       <Header />
       <Scroll />
-
       <Banner />
 
       <main className="container">
