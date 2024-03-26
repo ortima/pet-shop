@@ -3,13 +3,23 @@ import styles from './Products.module.scss'
 import products from '../../Data/productsData'
 import { AppContext } from '../../context/AppContext'
 import { IoBagAddOutline } from 'react-icons/io5'
+import { useAuth } from '../../context/AuthContext'
+import { Alert, AlertTitle, Modal } from '@mui/material'
 
 const Products = () => {
-  const [isHovered, setIsHovered] = useState(false)
   const { cartItem, setCartItem, quantity, setQuantity } =
     useContext(AppContext)
+  const { loggedIn } = useAuth()
+
+  const [openModal, setOpenModal] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
 
   const addToCart = (product) => {
+    if (!loggedIn) {
+      setOpenModal(true)
+      return
+    }
+
     setQuantity(quantity + 1)
 
     const existingItem = cartItem.find((item) => item.id === product.id)
@@ -24,6 +34,10 @@ const Products = () => {
       setCartItem([...cartItem, { ...product, quantity: 1 }])
     }
     console.log('Товар добавлен в корзину!', product)
+  }
+
+  const handleCloseModal = () => {
+    setOpenModal(false)
   }
 
   return (
@@ -64,6 +78,28 @@ const Products = () => {
           </div>
         ))}
       </div>
+      <Modal
+        open={openModal}
+        onClose={handleCloseModal}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Alert
+          severity="warning"
+          onClose={() => handleCloseModal()}
+          sx={{ padding: '1.2rem' }}
+        >
+          <AlertTitle sx={{ marginBottom: '1.2rem' }}>
+            Предупреждение!
+          </AlertTitle>
+          Вам необходимо авторизоваться!
+        </Alert>
+      </Modal>
     </section>
   )
 }

@@ -1,4 +1,4 @@
-@import 'normalize.css/normalize.css';
+/* /* @import 'normalize.css/normalize.css';
 
 /* Reset */
 *,
@@ -44,7 +44,7 @@ ion-icon {
 address {
   font-style: normal;
 }
-
+/* 
 html {
   font-family: var(--ff-nunito_sans);
   font-size: 10px;
@@ -56,7 +56,7 @@ body {
   color: var(--black);
   font-size: 1.8rem;
   line-height: 1.5;
-}
+} */
 
 :root {
   --bright-yellow-crayola: hsl(36, 94%, 57%);
@@ -103,7 +103,7 @@ section {
   }
 }
 
-span {
+/* span {
   display: inline;
   color: var(--portland-orange);
-}
+} */

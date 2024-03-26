@@ -12,6 +12,12 @@
     "deploy": "yarn build && gh-pages -d dist"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.14",
+    "@mui/material": "^5.15.14",
+    "firebase": "^10.9.0",
+    "firebase-tools": "^13.5.2",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

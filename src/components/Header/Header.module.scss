@@ -1,9 +1,8 @@
 .header {
-  width: 100%;
   color: white;
   transition: top 0.5s ease;
 
-  background-color: rgba(249, 148, 42, 1);
+  // background-color: rgba(249, 148, 42, 1);
 
   &.sticky {
     position: fixed;
@@ -74,4 +73,9 @@
       transform: scale(1.1);
     }
   }
+}
+
+.list {
+  display: flex;
+  gap: 15px;
 }

@@ -1,62 +1,84 @@
-import styles from './Header.module.scss'
-import { useEffect, useState, useContext } from 'react'
-import { AppContext } from '../../context/AppContext'
+import {
+  AppBar,
+  Badge,
+  Box,
+  Button,
+  IconButton,
+  Stack,
+  Toolbar,
+  Typography,
+} from '@mui/material'
+import PetsIcon from '@mui/icons-material/Pets'
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag'
+import LoginIcon from '@mui/icons-material/Login'
 import { Link } from 'react-router-dom'
-
-import { MdOutlineShoppingBag } from 'react-icons/md'
-import { TbLogin2 } from 'react-icons/tb'
+import { AppContext } from '../../context/AppContext'
+import { useContext } from 'react'
+import { useAuth } from '../../context/AuthContext'
 
 const Header = () => {
-  const [isSticky, setIsSticky] = useState(false)
   const { quantity } = useContext(AppContext)
-  console.log(quantity)
-
-  useEffect(() => {
-    const Scroll = () => {
-      window.scrollY > 500 ? setIsSticky(true) : setIsSticky(false)
-    }
-
-    window.addEventListener('scroll', Scroll)
-
-    return () => {
-      window.removeEventListener('scroll', Scroll)
-    }
-  }, [])
-
+  const { loggedIn } = useAuth()
   return (
-    <header className={`${styles.header} ${isSticky ? styles.sticky : ''}`}>
-      <div className={styles.container}>
-        <div className={styles.logo}>
-          <Link to="#">Зоомагазин &quot;Природа&quot;</Link>
-        </div>
-        <nav className={styles.navbar}>
-          <ul>
-            <li>
-              <Link to="/">Главная</Link>
-            </li>
-            <li>
-              <Link to="/catalog">Товары</Link>
-            </li>
-            <li>
-              <Link to="/blog">Блог</Link>
-            </li>
-            <li>
-              <Link to="/contacts">Контакты</Link>
-            </li>
-          </ul>
-        </nav>
-
-        <div className={styles.actions}>
-          <button className="actions-btn" aria-label="LogIn">
-            <TbLogin2 size={30} />
-          </button>
-          <Link to="/cart" className="actions-btn cart" aria-label="cart">
-            <MdOutlineShoppingBag size={30} />
-            {quantity > 0 && <span className={styles.badge}>{quantity}</span>}
+    <AppBar position="sticky" color="header">
+      <Toolbar
+        sx={{
+          color: 'white',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <Box display={'flex'} alignItems={'center'}>
+          <IconButton size="large" color="inherit">
+            <PetsIcon />
+          </IconButton>
+          <Typography variant="h5" component="div">
+            Зоомагазин Природа
+          </Typography>
+        </Box>
+        <Box display={'flex'} alignItems={'center'}>
+          <Stack direction="row" spacing={2}>
+            <Link to="/">
+              <Button color="inherit" sx={{ fontWeight: '600' }}>
+                Главная
+              </Button>
+            </Link>
+            <Link to="/catalog">
+              <Button color="inherit" sx={{ fontWeight: '600' }}>
+                Каталог
+              </Button>
+            </Link>
+            <Link to="/blog">
+              <Button color="inherit" sx={{ fontWeight: '600' }}>
+                Блог
+              </Button>
+            </Link>
+            <Link to="/contacts">
+              <Button color="inherit" sx={{ fontWeight: '600' }}>
+                Контакты
+              </Button>
+            </Link>
+          </Stack>
+        </Box>
+        <Box display={'flex'}>
+          {loggedIn ? (
+            <Link to="/cart">
+              <IconButton size="large" color="inherit">
+                <Badge badgeContent={quantity} color="warning">
+                  <ShoppingBagIcon />
+                </Badge>
+              </IconButton>
+            </Link>
+          ) : null}
+          <Link to="/signin">
+            <IconButton size="large" color="inherit">
+              <LoginIcon />
+            </IconButton>
           </Link>
-        </div>
-      </div>
-    </header>
+        </Box>
+      </Toolbar>
+    </AppBar>
   )
 }
 
