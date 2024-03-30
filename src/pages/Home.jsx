@@ -8,16 +8,14 @@ import Banner from '../components/Banner/Banner'
 import Advantages from '../components/Advantages/Advantages'
 
 import '../index.css'
-import Scroll from '../components/Scroll/Scroll'
 
 const Home = () => {
   return (
     <>
       <Header />
-      <Scroll />
       <Banner />
 
-      <main className="container">
+      <main className="max-w-screen-xl h-full mx-auto">
         <Category />
         <Articles />
         <Products />

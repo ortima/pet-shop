@@ -1,10 +1,11 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import { useContext } from 'react'
 import { AppContext } from '../../context/AppContext'
 import styles from './Cart.module.scss'
 import { MdOutlineDelete } from 'react-icons/md'
 import { AiOutlineLike } from 'react-icons/ai'
+import toast, { Toaster } from 'react-hot-toast'
 
-const Cart = React.forwardRef((props, ref) => {
+const Cart = () => {
   const { cartItem, setCartItem, quantity, setQuantity } =
     useContext(AppContext)
 
@@ -42,6 +43,7 @@ const Cart = React.forwardRef((props, ref) => {
   const removeItem = (id, quantityToRemove) => {
     setCartItem((prevCartItem) => prevCartItem.filter((item) => item.id !== id))
     setQuantity((prevQuantity) => prevQuantity - quantityToRemove)
+    toast.success(`Вы убрали из корзины товар`)
   }
 
   const totalAmount = cartItem.reduce(
@@ -50,7 +52,7 @@ const Cart = React.forwardRef((props, ref) => {
   )
 
   return (
-    <section className={styles.shopping_cart} tabIndex={-1} ref={ref}>
+    <section className={styles.shopping_cart} tabIndex={-1}>
       <div className={styles.title}>Корзина товаров</div>
 
       {cartItem.map((item, index) => (
@@ -122,8 +124,9 @@ const Cart = React.forwardRef((props, ref) => {
           Оформить заказ
         </button>
       </div>
+      <Toaster position="top-center" reverseOrder={false} />
     </section>
   )
-})
+}
 
 export default Cart

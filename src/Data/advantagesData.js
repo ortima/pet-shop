@@ -17,7 +17,7 @@ const advantages = [
     id: 3,
     src: '/advantages/app.svg',
     title: 'Удобное приложение',
-    description: 'Заказывайте через мобильное приложение',
+    description: 'Заказывайте через приложение',
   },
   {
     id: 4,

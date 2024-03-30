@@ -1,6 +1,11 @@
 /* /* @import 'normalize.css/normalize.css';
 
+
 /* Reset */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 *,
 *::before,
 *::after {
@@ -44,19 +49,6 @@ ion-icon {
 address {
   font-style: normal;
 }
-/* 
-html {
-  font-family: var(--ff-nunito_sans);
-  font-size: 10px;
-  scroll-behavior: smooth;
-}
-
-body {
-  background-color: var(--white);
-  color: var(--black);
-  font-size: 1.8rem;
-  line-height: 1.5;
-} */
 
 :root {
   --bright-yellow-crayola: hsl(36, 94%, 57%);
@@ -86,7 +78,7 @@ body {
   --shadow-1: 0 8px 16px hsla(0, 0%, 0%, 0.15);
 
   /* paddings and margins */
-  --section-margin: 80px;
+  --section-margin: 40px;
 
   font-family: 'IBM Plex Sans', sans-serif;
 }
@@ -96,14 +88,10 @@ body {
 }
 
 section {
-  margin-block: var(--section-margin);
-  h1 {
-    text-align: center;
-    margin-block-end: 30px;
-  }
+  padding-block: var(--section-margin);
 }
 
-/* span {
-  display: inline;
-  color: var(--portland-orange);
-} */
+span {
+  display: inline-block;
+  color: var(--bright-yellow-crayola);
+}

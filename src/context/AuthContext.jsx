@@ -1,18 +1,47 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+} from 'firebase/auth'
+import { auth } from './../config/config'
 
-const AuthContext = createContext()
-
+const UserContext = createContext()
 // eslint-disable-next-line react/prop-types
-export const AuthProvider = ({ children }) => {
-  const [loggedIn, setLoggedIn] = useState(false)
-  console.log(loggedIn, 'это loggedIn')
-  console.log(typeof loggedIn)
+export const AuthContextProvider = ({ children }) => {
+  const [user, setUser] = useState({})
+  console.log(user)
 
+  const createUser = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password)
+  }
+
+  const signIn = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password)
+  }
+
+  const logout = () => {
+    return signOut(auth)
+  }
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      console.log(currentUser)
+      setUser(currentUser)
+    })
+    return () => {
+      unsubscribe()
+    }
+  }, [])
+  //username
   return (
-    <AuthContext.Provider value={{ loggedIn, setLoggedIn }}>
+    <UserContext.Provider value={{ createUser, user, logout, signIn }}>
       {children}
-    </AuthContext.Provider>
+    </UserContext.Provider>
   )
 }
 
-export const useAuth = () => useContext(AuthContext)
+export const UserAuth = () => {
+  return useContext(UserContext)
+}

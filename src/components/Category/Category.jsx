@@ -4,7 +4,7 @@ import categories from '../../Data/categoriesData'
 const Category = () => {
   return (
     <section className={styles.category}>
-      <h1>
+      <h1 className="text-2xl">
         <span>Топовые</span> категории
       </h1>
       <div className={styles.list}>

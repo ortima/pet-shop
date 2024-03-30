@@ -2,26 +2,19 @@ import { useState, useContext } from 'react'
 import styles from './Products.module.scss'
 import products from '../../Data/productsData'
 import { AppContext } from '../../context/AppContext'
+
+import toast, { Toaster } from 'react-hot-toast'
 import { IoBagAddOutline } from 'react-icons/io5'
-import { useAuth } from '../../context/AuthContext'
-import { Alert, AlertTitle, Modal } from '@mui/material'
 
 const Products = () => {
   const { cartItem, setCartItem, quantity, setQuantity } =
     useContext(AppContext)
-  const { loggedIn } = useAuth()
 
-  const [openModal, setOpenModal] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
 
   const addToCart = (product) => {
-    if (!loggedIn) {
-      setOpenModal(true)
-      return
-    }
-
     setQuantity(quantity + 1)
-
+    toast.success(`${product.name} добавлен в вашу корзину!`)
     const existingItem = cartItem.find((item) => item.id === product.id)
     if (existingItem) {
       const updatedCart = cartItem.map((item) =>
@@ -36,13 +29,9 @@ const Products = () => {
     console.log('Товар добавлен в корзину!', product)
   }
 
-  const handleCloseModal = () => {
-    setOpenModal(false)
-  }
-
   return (
     <section className={styles.products}>
-      <h1>
+      <h1 className="text-2xl">
         <span>Хит</span> продаж
       </h1>
       <div className={styles.products_list}>
@@ -78,28 +67,7 @@ const Products = () => {
           </div>
         ))}
       </div>
-      <Modal
-        open={openModal}
-        onClose={handleCloseModal}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Alert
-          severity="warning"
-          onClose={() => handleCloseModal()}
-          sx={{ padding: '1.2rem' }}
-        >
-          <AlertTitle sx={{ marginBottom: '1.2rem' }}>
-            Предупреждение!
-          </AlertTitle>
-          Вам необходимо авторизоваться!
-        </Alert>
-      </Modal>
+      <Toaster position="top-center" reverseOrder={false} />
     </section>
   )
 }
