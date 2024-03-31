@@ -6,10 +6,37 @@ import { FaInstagram, FaPinterest } from 'react-icons/fa'
 
 const Contacts = () => {
   return (
-    <>
-      <div className={styles.container_title}>
-        <h1>Наши контакты</h1>
-        <h2>Тут какой-то текст</h2>
+    <section className="max-w-screen-lg mx-auto">
+      <div className="my-4">
+        <h1 className="text-2xl text-center font-bold mb-3">Наши контакты</h1>
+        <div className="flex flex-col gap-3 p-2 border-2 border-black rounded-md">
+          <p>
+            <span className="text-black font-semibold inline">
+              Зоомагазин Природа{' '}
+            </span>
+            является интернет-магазином товаров для животных в Нальчике, в
+            ассортимент которого входят как высококачественные корма, так и
+            широкий выбор одежды, игрушек, аксессуаров и многого другого. Мы
+            готовы общаться с клиентами 7 дней в неделю 24 часа в сутки.
+          </p>
+          <p>
+            <span className="text-black font-semibold inline">
+              Зоомагазин Природа{' '}
+            </span>
+            любит животных, практически у каждого из нас есть свои собаки,
+            кошки, хомяки, кролики, морские свинки, шиншилы, хорьки, попугаи,
+            рыбки...
+          </p>
+          <p>Мы готовы делиться опытом и интересными новостями.</p>
+          <p>
+            Мы всегда выполняем свои обязательства и рады сотрудничать с новыми
+            партнерами.
+          </p>
+          <p>
+            Мы хотим стать лучше, открыты к диалогу и ждем обратной связи от
+            наших клиентов
+          </p>
+        </div>
       </div>
 
       <div className={styles.contacts}>
@@ -61,7 +88,7 @@ const Contacts = () => {
           ></iframe>
         </div>
       </div>
-    </>
+    </section>
   )
 }
 

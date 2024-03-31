@@ -3,14 +3,6 @@
   justify-content: center;
 }
 
-.container_title {
-  margin-block: 50px;
-  text-align: center;
-  h1 {
-    text-transform: uppercase;
-  }
-}
-
 .contacts_info {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -18,7 +10,7 @@
   grid-column-gap: 30px;
   grid-row-gap: 60px;
   background-color: var(--bright-yellow-crayola);
-  padding: 40px;
+  padding: 14px;
 }
 
 .block {

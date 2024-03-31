@@ -13,6 +13,7 @@ import Login from './pages/auth/Login'
 import SignUp from './pages/auth/SignUp'
 import Account from './pages/auth/Account'
 import ProtectedRoutes from './utils/ProtectedRoutes'
+import ScrollToTop from './utils/ScrollToTop'
 
 const App = () => {
   const [quantity, setQuantity] = useState(0)
@@ -24,6 +25,7 @@ const App = () => {
         value={{ quantity, setQuantity, cartItem, setCartItem }}
       >
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="catalog" element={<Catalog />} />

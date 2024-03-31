@@ -46,6 +46,7 @@ const Footer = () => {
         style={{
           backgroundImage: `url(${footerImg})`,
           backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
         }}
         className="w-full mt-24 text-white pt-2"
       >
