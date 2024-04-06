@@ -2,16 +2,19 @@ import { useState, useContext } from 'react'
 import styles from './Products.module.scss'
 import products from '../../Data/productsData'
 import { AppContext } from '../../context/AppContext'
+
+import toast, { Toaster } from 'react-hot-toast'
 import { IoBagAddOutline } from 'react-icons/io5'
 
 const Products = () => {
-  const [isHovered, setIsHovered] = useState(false)
   const { cartItem, setCartItem, quantity, setQuantity } =
     useContext(AppContext)
 
+  const [isHovered, setIsHovered] = useState(false)
+
   const addToCart = (product) => {
     setQuantity(quantity + 1)
-
+    toast.success(`${product.name} добавлен в вашу корзину!`)
     const existingItem = cartItem.find((item) => item.id === product.id)
     if (existingItem) {
       const updatedCart = cartItem.map((item) =>
@@ -28,7 +31,7 @@ const Products = () => {
 
   return (
     <section className={styles.products}>
-      <h1>
+      <h1 className="text-2xl">
         <span>Хит</span> продаж
       </h1>
       <div className={styles.products_list}>
@@ -64,6 +67,7 @@ const Products = () => {
           </div>
         ))}
       </div>
+      <Toaster position="top-center" reverseOrder={false} />
     </section>
   )
 }

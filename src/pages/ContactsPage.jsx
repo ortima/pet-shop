@@ -6,7 +6,7 @@ const ContactsPage = () => {
   return (
     <>
       <Header />
-      <main className="container">
+      <main className="max-w-screen-2xl h-full mx-auto">
         <Contacts />
       </main>
       <Footer />
