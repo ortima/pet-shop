@@ -18,7 +18,7 @@ const FAQList = () => {
     <section className={styles.container}>
       <img src={logo} alt="logo" />
       <div className={styles.content}>
-        <h1>
+        <h1 className="text-2xl text-center font-bold">
           Почему выбирают зоомагазин <span>«Природа»</span>?
         </h1>
         <p className={styles.subtitle}>

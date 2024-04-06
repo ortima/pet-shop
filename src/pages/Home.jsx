@@ -13,10 +13,9 @@ const Home = () => {
   return (
     <>
       <Header />
-
       <Banner />
 
-      <main className="container">
+      <main className="max-w-screen-xl h-full mx-auto">
         <Category />
         <Articles />
         <Products />

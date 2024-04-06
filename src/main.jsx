@@ -6,28 +6,49 @@ import NotFound from './pages/NotFound'
 import Catalog from './pages/Catalog'
 import CartPage from './pages/CartPage'
 import { AppContext } from './context/AppContext'
+import { AuthContextProvider } from './context/AuthContext'
 import ContactsPage from './pages/ContactsPage'
+import Blog from './pages/Blog'
+import Login from './pages/auth/Login'
+import SignUp from './pages/auth/SignUp'
+import Account from './pages/auth/Account'
+import ProtectedRoutes from './utils/ProtectedRoutes'
+import ScrollToTop from './utils/ScrollToTop'
 
 const App = () => {
   const [quantity, setQuantity] = useState(0)
   const [cartItem, setCartItem] = useState([])
 
   return (
-    <AppContext.Provider
-      value={{ quantity, setQuantity, cartItem, setCartItem }}
-    >
-      <BrowserRouter basename={import.meta.env.BASE_URL || '/'}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="catalog" element={<Catalog />} />
-          <Route path="blog" element={<div>Blog</div>} />
-          <Route path="contacts" element={<ContactsPage />} />
-          <Route path="cart" element={<CartPage />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </AppContext.Provider>
+    <AuthContextProvider>
+      <AppContext.Provider
+        value={{ quantity, setQuantity, cartItem, setCartItem }}
+      >
+        <BrowserRouter>
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="catalog" element={<Catalog />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="contacts" element={<ContactsPage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="*" element={<NotFound />} />
+            <Route
+              path="/account"
+              element={
+                <ProtectedRoutes>
+                  <Account />
+                </ProtectedRoutes>
+              }
+            />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+          </Routes>
+        </BrowserRouter>
+      </AppContext.Provider>
+    </AuthContextProvider>
   )
 }
 
-createRoot(document.getElementById('root')).render(<App />)
+const root = createRoot(document.getElementById('root'))
+root.render(<App />)
