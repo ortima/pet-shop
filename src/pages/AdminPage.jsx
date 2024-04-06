@@ -39,7 +39,7 @@ const AdminPage = () => {
       <button className="bg-black text-white p-4" onClick={getAllFoodItems}>
         Fetch data
       </button>
-      <div className="flex gap-4">
+      <div className="flex gap-4 p-2">
         {foodItems.map((item) => (
           <div key={item.id}>
             <h2>Name: {item.name}</h2>
