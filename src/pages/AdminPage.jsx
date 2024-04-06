@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { getStorage, ref } from 'firebase/storage'
 import { collection, getDocs } from 'firebase/firestore'
 import { fs } from './../config/config'

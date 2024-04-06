@@ -1,5 +1,6 @@
 import styles from './Category.module.scss'
 import categories from '../../Data/categoriesData'
+import { Link } from 'react-router-dom'
 
 const Category = () => {
   return (
@@ -12,7 +13,7 @@ const Category = () => {
           {categories.map((category, index) => (
             <li key={index}>
               <img src={category.src} alt="" />
-              <a href="#">{category.text}</a>
+              <Link to="#">{category.text}</Link>
             </li>
           ))}
         </ul>

@@ -3,14 +3,10 @@ import { IoIosMail } from 'react-icons/io'
 import { IoShareSocialOutline } from 'react-icons/io5'
 import { FaInstagram, FaPinterest } from 'react-icons/fa'
 import ContactForm from './ContactForm'
-import contact_font from '/font-contact.jpg'
 
 const Contacts = () => {
   return (
-    <div
-      style={{ backgroundImage: `url(${contact_font})` }}
-      className="bg-cover bg-no-repeat"
-    >
+    <>
       <section className="max-w-screen-lg mx-auto">
         <div className="my-4 bg-white">
           <h1 className="text-2xl text-center font-bold mb-3">Наши контакты</h1>
@@ -152,7 +148,7 @@ const Contacts = () => {
       <section className="max-w-screen-lg mx-auto text-center">
         <ContactForm />
       </section>
-    </div>
+    </>
   )
 }
 

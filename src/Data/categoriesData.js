@@ -1,7 +1,7 @@
 // const basename = import.meta.env.BASE_URL || '/'
 
 const categories = [
-  { src: `/category/category-1.jpg`, text: 'Еда для кошек' },
+  { src: `/category/category-1.jpg`, text: 'Еда для кошек', type: 'food_cats' },
   {
     src: `/category/category-2.jpg`,
     text: 'Игрушки для кошек',
