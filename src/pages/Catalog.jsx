@@ -1,30 +1,82 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import Header from '../components/Header/Header'
-import Footer from '../components/Footer/Footer'
 import { useCatalog } from './../context/CatalogContext'
 import CatalogCard from '../components/CatalogCard/CatalogCard'
+import Pagination from '../utils/Pagination'
 import Filter from '../utils/Filter'
+import { useSearchParams } from 'react-router-dom'
 
 const Catalog = () => {
   const { items, loading } = useCatalog()
+  const [searchParams, setSearchParams] = useSearchParams()
   const [filterType, setFilterType] = useState(null)
   const [filterPrice, setFilterPrice] = useState(null)
 
+  const [currentPage, setCurrentPage] = useState(1)
+  const [itemsPerPage] = useState(4)
+
+  const search = searchParams.get('catalog')
+
+  const handleSearch = (e) => {
+    setSearchParams({ catalog: e.target.value })
+    setFilterType(null)
+    setFilterPrice(null)
+    setCurrentPage(1)
+  }
+
   const handleFilterType = (type) => {
     setFilterType(type)
+    setSearchParams((prevSearchParams) => ({
+      ...prevSearchParams,
+      type: type,
+    }))
   }
+
   const handleFilterPrice = (price) => {
     setFilterPrice(price)
+    setSearchParams((prevSearchParams) => ({
+      ...prevSearchParams,
+      price: price,
+    }))
   }
 
   const handleReset = () => {
     setFilterType(null)
     setFilterPrice(null)
+    setSearchParams({})
+    setCurrentPage(1)
   }
+
+  const filteredItems = items.filter((item) => {
+    // Фильтрация по типу
+    if (filterType && item.type !== filterType) {
+      return false
+    }
+    // Фильтрация по цене
+    if (filterPrice && parseFloat(item.price) > filterPrice) {
+      return false
+    }
+    // Фильтрация по поисковому запросу
+    if (
+      search &&
+      !(
+        item.name.toLowerCase().includes(search.toLowerCase()) ||
+        item.description.toLowerCase().includes(search.toLowerCase()) ||
+        item.brand.toLowerCase().includes(search.toLowerCase())
+      )
+    ) {
+      return false
+    }
+    return true
+  })
+
+  const indexOfLastItem = currentPage * itemsPerPage
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage
+  const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem)
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
+
   return (
     <>
-      <Header />
       <Filter
         filterType={filterType}
         filterPrice={filterPrice}
@@ -86,19 +138,31 @@ const Catalog = () => {
         {loading ? (
           <div>Loading...</div>
         ) : (
-          <div className="flex flex-wrap gap-4 justify-between">
-            {items.map((item) => (
-              <CatalogCard
-                key={item.id}
-                item={item}
-                filterType={filterType}
-                filterPrice={filterPrice}
-              />
-            ))}
+          <div>
+            <input
+              type="search"
+              onChange={handleSearch}
+              name="search"
+              className="border-black border-2"
+            />
+            <div className="flex flex-wrap gap-4 justify-between">
+              {currentItems.map((item) => (
+                <CatalogCard
+                  key={item.id}
+                  item={item}
+                  filterType={filterType}
+                  filterPrice={filterPrice}
+                />
+              ))}
+            </div>
+            <Pagination
+              itemsPerPage={itemsPerPage}
+              totalItems={filteredItems.length}
+              paginate={paginate}
+            />
           </div>
         )}
       </section>
-      <Footer />
     </>
   )
 }

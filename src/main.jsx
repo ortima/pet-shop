@@ -12,10 +12,11 @@ import Blog from './pages/Blog'
 import Login from './pages/auth/Login'
 import SignUp from './pages/auth/SignUp'
 import Account from './pages/auth/Account'
-import AdminPage from './pages/adminPage'
 import ProtectedRoutes from './utils/ProtectedRoutes'
 import ScrollToTop from './utils/ScrollToTop'
 import { CatalogProvider } from './context/CatalogContext'
+import Layout from './components/Layout/Layout'
+import ItemDetail from './components/CatalogCard/itemDetail'
 
 const App = () => {
   const [quantity, setQuantity] = useState(0)
@@ -30,13 +31,17 @@ const App = () => {
           <BrowserRouter>
             <ScrollToTop />
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="catalog" element={<Catalog />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="contacts" element={<ContactsPage />} />
-              <Route path="/cart" element={<CartPage />} />
-              <Route path="*" element={<NotFound />} />
-              <Route path="/admin" element={<AdminPage />} />
+              <Route path="/" element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route path="blog" element={<Blog />} />
+                <Route path="catalog" element={<Catalog />} />
+                <Route path="catalog/:itemId" element={<ItemDetail />} />
+                <Route path="contacts" element={<ContactsPage />} />
+                <Route path="cart" element={<CartPage />} />
+                <Route path="*" element={<NotFound />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<SignUp />} />
+              </Route>
               <Route
                 path="/account"
                 element={
@@ -45,8 +50,6 @@ const App = () => {
                   </ProtectedRoutes>
                 }
               />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<SignUp />} />
             </Routes>
           </BrowserRouter>
         </CatalogProvider>

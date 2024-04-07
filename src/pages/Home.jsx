@@ -12,18 +12,13 @@ import '../index.css'
 const Home = () => {
   return (
     <>
-      <Header />
       <Banner />
 
-      <main className="max-w-screen-xl h-full mx-auto">
-        <Category />
-        <Articles />
-        <Products />
-        <FAQList />
-        <Advantages />
-      </main>
-
-      <Footer />
+      <Category />
+      <Articles />
+      <Products />
+      <FAQList />
+      <Advantages />
     </>
   )
 }

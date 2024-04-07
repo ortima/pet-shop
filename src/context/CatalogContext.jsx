@@ -23,17 +23,18 @@ export const CatalogProvider = ({ children }) => {
           const mainImageURL = `https://firebasestorage.googleapis.com/v0/b/${
             storage.app.options.storageBucket
           }/o/${encodeURIComponent(data.main_image)}?alt=media`
+
           items.push({
             id: doc.id,
             name: data.name,
             description: data.description,
+            fulldesc: data.fulldesc,
             price: data.price,
             brand: data.brand,
             category: data.category,
             type: data.type,
             mainImage: mainImageURL,
             addedOn: data.added_on.toDate(),
-            images: data.images,
           })
         })
 

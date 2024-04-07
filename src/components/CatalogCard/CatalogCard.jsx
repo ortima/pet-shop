@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
-
+import { Link } from 'react-router-dom'
 const CatalogCard = ({ item, filterType, filterPrice }) => {
   if (filterType && item.type !== filterType) {
     return null
   }
+
   const itemPrice = parseFloat(item.price)
   if (filterPrice && itemPrice > filterPrice) {
     return null
@@ -14,11 +14,13 @@ const CatalogCard = ({ item, filterType, filterPrice }) => {
       key={item.id}
       className="w-[250px] rounded-xl overflow-hidden shadow-lg flex flex-col gap-1"
     >
-      <img
-        className="size-60 self-center"
-        src={item.mainImage}
-        alt="Main Image"
-      />
+      <Link to={`/catalog/${item.id}`}>
+        <img
+          className="size-60 self-center cursor-pointer"
+          src={item.mainImage}
+          alt="Main Image"
+        />
+      </Link>
       <div className="px-6 py-4 flex flex-col gap-2">
         <h2 className="text-xl font-semibold tracking-tight text-gray-900">
           {item.name}
@@ -29,16 +31,10 @@ const CatalogCard = ({ item, filterType, filterPrice }) => {
         </div>
         <div className="flex items-center justify-between">
           <p className="text-3xl font-bold text-gray-900">{item.price}₽</p>
-          <a
-            href=""
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
-          >
+          <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
             Add to cart
-          </a>
+          </button>
         </div>
-        {/* <p>Category: {item.category}</p> */}
-        {/* <p>Type: {item.type}</p> */}
-        {/* <p>Added On: {item.addedOn.toString()}</p> */}
       </div>
     </div>
   )

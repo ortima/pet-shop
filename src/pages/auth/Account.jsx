@@ -19,7 +19,6 @@ const Account = () => {
 
   return (
     <>
-      <Header />
       <div className="max-w-[600px] mx-auto my-16 p-4">
         <h1 className="text-2xl font-bold py-4">Аккаунт</h1>
         <p>Email: {user && user.email}</p>
