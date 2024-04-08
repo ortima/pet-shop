@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useCatalog } from './../context/CatalogContext'
 import CatalogCard from '../components/CatalogCard/CatalogCard'
 import Pagination from '../utils/Pagination'
 import Filter from '../utils/Filter'
 import { useSearchParams } from 'react-router-dom'
+import Search from '../components/CatalogCard/Search'
 
 const Catalog = () => {
   const { items, loading } = useCatalog()
@@ -83,6 +84,7 @@ const Catalog = () => {
         setFilterType={setFilterType}
         setFilterPrice={setFilterPrice}
       />
+      <Search handleSearch={handleSearch} />
       <section className="flex max-w-screen-xl gap-10 mx-auto">
         <aside className="w-[300px] flex flex-col gap-3">
           <div className="flex flex-col gap-3 bg-zinc-300 p-4">
@@ -139,12 +141,6 @@ const Catalog = () => {
           <div>Loading...</div>
         ) : (
           <div>
-            <input
-              type="search"
-              onChange={handleSearch}
-              name="search"
-              className="border-black border-2"
-            />
             <div className="flex flex-wrap gap-4 justify-between">
               {currentItems.map((item) => (
                 <CatalogCard
