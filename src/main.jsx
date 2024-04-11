@@ -1,11 +1,9 @@
-import { useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import Catalog from './pages/Catalog'
 import CartPage from './pages/CartPage'
-import { AppContext } from './context/AppContext'
 import { AuthContextProvider } from './context/AuthContext'
 import ContactsPage from './pages/ContactsPage'
 import Blog from './pages/Blog'
@@ -17,16 +15,12 @@ import ScrollToTop from './utils/ScrollToTop'
 import { CatalogProvider } from './context/CatalogContext'
 import Layout from './components/Layout/Layout'
 import ItemDetail from './components/CatalogCard/itemDetail'
+import CartProvider from './context/CartContext'
 
 const App = () => {
-  const [quantity, setQuantity] = useState(0)
-  const [cartItem, setCartItem] = useState([])
-
   return (
     <AuthContextProvider>
-      <AppContext.Provider
-        value={{ quantity, setQuantity, cartItem, setCartItem }}
-      >
+      <CartProvider>
         <CatalogProvider>
           <BrowserRouter>
             <ScrollToTop />
@@ -53,7 +47,7 @@ const App = () => {
             </Routes>
           </BrowserRouter>
         </CatalogProvider>
-      </AppContext.Provider>
+      </CartProvider>
     </AuthContextProvider>
   )
 }

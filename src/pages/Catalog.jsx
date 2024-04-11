@@ -4,7 +4,7 @@ import CatalogCard from '../components/CatalogCard/CatalogCard'
 import Pagination from '../utils/Pagination'
 import Filter from '../utils/Filter'
 import { useSearchParams } from 'react-router-dom'
-import Search from '../components/CatalogCard/Search'
+import Search from '../components/Search/Search'
 
 const Catalog = () => {
   const { items, loading } = useCatalog()
@@ -15,10 +15,10 @@ const Catalog = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage] = useState(4)
 
-  const search = searchParams.get('catalog')
+  const search = searchParams.get('item')
 
   const handleSearch = (e) => {
-    setSearchParams({ catalog: e.target.value })
+    setSearchParams({ item: e.target.value })
     setFilterType(null)
     setFilterPrice(null)
     setCurrentPage(1)

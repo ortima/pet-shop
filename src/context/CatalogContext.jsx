@@ -1,11 +1,10 @@
-import React, { createContext, useState, useEffect, useContext } from 'react'
+import { createContext, useState, useEffect, useContext } from 'react'
 import { getStorage } from 'firebase/storage'
 import { collection, getDocs } from 'firebase/firestore'
 import { fs } from './../config/config'
 
 const CatalogContext = createContext()
 
-// eslint-disable-next-line react/prop-types
 export const CatalogProvider = ({ children }) => {
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(true)
@@ -19,7 +18,6 @@ export const CatalogProvider = ({ children }) => {
         const items = []
         querySnapshot.forEach((doc) => {
           const data = doc.data()
-          console.log(data)
           const mainImageURL = `https://firebasestorage.googleapis.com/v0/b/${
             storage.app.options.storageBucket
           }/o/${encodeURIComponent(data.main_image)}?alt=media`
@@ -33,7 +31,7 @@ export const CatalogProvider = ({ children }) => {
             brand: data.brand,
             category: data.category,
             type: data.type,
-            mainImage: mainImageURL,
+            imageSrc: mainImageURL,
             addedOn: data.added_on.toDate(),
           })
         })

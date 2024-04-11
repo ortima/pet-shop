@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
-import { AppContext } from '../../context/AppContext'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 
 import { AiTwotoneShopping } from 'react-icons/ai'
 import { RxAvatar } from 'react-icons/rx'
@@ -10,6 +9,7 @@ import { VscSignIn } from 'react-icons/vsc'
 import { UserAuth } from '../../context/AuthContext'
 import { GiExitDoor } from 'react-icons/gi'
 import toast, { Toaster } from 'react-hot-toast'
+import { useCart } from '../../context/CartContext'
 
 const PopUp = () => {
   const { user, logout } = UserAuth()
@@ -69,7 +69,7 @@ const PopUp = () => {
 
 const Header = () => {
   const [isPopUpOpen, setIsPopUpOpen] = useState(false)
-  const { quantity } = useContext(AppContext)
+  const { cart } = useCart()
   return (
     <header className="sticky top-0 z-10">
       <div className="w-full h-20 bg-white border-b-2 border-b-gray-800">
@@ -98,9 +98,9 @@ const Header = () => {
             <div className="cursor-pointer relative">
               <Link to="/cart">
                 <AiTwotoneShopping size={30} />
-                {quantity > 0 && (
+                {cart.totalCount > 0 && (
                   <span className="absolute w-5 h-5 bottom-5 left-4  font-semibold flex items-center justify-center text-white text-xs bg-red-600 rounded-full">
-                    {quantity}
+                    {cart.totalCount}
                   </span>
                 )}
               </Link>

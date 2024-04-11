@@ -1,6 +1,7 @@
-/* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom'
+import { useCart } from '../../context/CartContext'
 const CatalogCard = ({ item, filterType, filterPrice }) => {
+  const { addToCart } = useCart()
   if (filterType && item.type !== filterType) {
     return null
   }
@@ -17,7 +18,7 @@ const CatalogCard = ({ item, filterType, filterPrice }) => {
       <Link to={`/catalog/${item.id}`}>
         <img
           className="size-60 self-center cursor-pointer"
-          src={item.mainImage}
+          src={item.imageSrc}
           alt="Main Image"
         />
       </Link>
@@ -31,7 +32,12 @@ const CatalogCard = ({ item, filterType, filterPrice }) => {
         </div>
         <div className="flex items-center justify-between">
           <p className="text-3xl font-bold text-gray-900">{item.price}₽</p>
-          <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+          <button
+            onClick={() => {
+              addToCart(item)
+            }}
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+          >
             Add to cart
           </button>
         </div>

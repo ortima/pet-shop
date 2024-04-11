@@ -1,9 +1,11 @@
 import { useParams, Link } from 'react-router-dom'
 import { useCatalog } from '../../context/CatalogContext'
+import { useCart } from '../../context/CartContext'
 
 const ItemDetail = () => {
   const { items } = useCatalog()
   const { itemId } = useParams()
+  const { addToCart } = useCart()
 
   const item = items.find((item) => item.id === itemId)
 
@@ -18,7 +20,7 @@ const ItemDetail = () => {
       <div className="flex">
         <img
           className="size-96 self-center"
-          src={item.mainImage}
+          src={item.imageSrc}
           alt="Main Image"
         />
         <div className="px-6 py-4 flex flex-col gap-2">
@@ -32,12 +34,12 @@ const ItemDetail = () => {
           </div>
           <div className="flex items-center justify-between">
             <p className="text-3xl font-bold text-gray-900">{item.price}₽</p>
-            <a
-              href=""
+            <button
+              onClick={() => addToCart(item)}
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
             >
               Add to cart
-            </a>
+            </button>
           </div>
         </div>
       </div>

@@ -20,5 +20,6 @@ module.exports = {
     'no-unused-vars': 'warn',
     'no-var': 'error',
     'prefer-const': 'warn',
+    'react/prop-types': 0,
   },
 }
