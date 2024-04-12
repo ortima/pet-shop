@@ -89,7 +89,7 @@ const Catalog = () => {
       <LoadingSpinner isLoading={loading} />
       {!loading && (
         <section className="flex max-w-screen-xl gap-10 mx-auto">
-          <aside className="w-[400px] flex flex-col gap-3">
+          <aside className="min-w-[300px] flex flex-col gap-3">
             <div className="flex flex-col gap-3 bg-zinc-300 p-4">
               <h1 className="text-xl text-center">Категория</h1>
               <p

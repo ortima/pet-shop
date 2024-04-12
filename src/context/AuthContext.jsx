@@ -10,7 +10,6 @@ import { auth } from './../config/config'
 const UserContext = createContext()
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState({})
-  console.log(user)
 
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password)
@@ -26,7 +25,6 @@ export const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log(currentUser)
       setUser(currentUser)
     })
     return () => {
