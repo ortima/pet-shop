@@ -36,9 +36,9 @@ const ItemDetail = () => {
             <p className="text-3xl font-bold text-gray-900">{item.price}₽</p>
             <button
               onClick={() => addToCart(item)}
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+              className="text-black bg-white border-2 border-black hover:bg-orange-500 hover:text-white hover:border-none font-medium rounded-lg text-sm px-5 py-2.5 text-center "
             >
-              Add to cart
+              Добавить
             </button>
           </div>
         </div>

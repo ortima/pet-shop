@@ -8,7 +8,6 @@ import {
 import { auth } from './../config/config'
 
 const UserContext = createContext()
-// eslint-disable-next-line react/prop-types
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState({})
   console.log(user)
@@ -34,7 +33,6 @@ export const AuthContextProvider = ({ children }) => {
       unsubscribe()
     }
   }, [])
-  //username
   return (
     <UserContext.Provider value={{ createUser, user, logout, signIn }}>
       {children}

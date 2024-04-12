@@ -21,7 +21,6 @@ export const CatalogProvider = ({ children }) => {
           const mainImageURL = `https://firebasestorage.googleapis.com/v0/b/${
             storage.app.options.storageBucket
           }/o/${encodeURIComponent(data.main_image)}?alt=media`
-
           items.push({
             id: doc.id,
             name: data.name,
@@ -33,6 +32,7 @@ export const CatalogProvider = ({ children }) => {
             type: data.type,
             imageSrc: mainImageURL,
             addedOn: data.added_on.toDate(),
+            hit: data.hit,
           })
         })
 
@@ -46,6 +46,7 @@ export const CatalogProvider = ({ children }) => {
 
     fetchItems()
   }, [])
+
   return (
     <CatalogContext.Provider value={{ items, loading }}>
       {children}

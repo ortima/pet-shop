@@ -99,7 +99,7 @@ const Header = () => {
               <Link to="/cart">
                 <AiTwotoneShopping size={30} />
                 {cart.totalCount > 0 && (
-                  <span className="absolute w-5 h-5 bottom-5 left-4  font-semibold flex items-center justify-center text-white text-xs bg-red-600 rounded-full">
+                  <span className="absolute w-5 h-5 bottom-5 left-4  font-semibold flex items-center justify-center text-white text-xs bg-orange-500 rounded-full">
                     {cart.totalCount}
                   </span>
                 )}

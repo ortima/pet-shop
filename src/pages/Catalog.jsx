@@ -5,6 +5,7 @@ import Pagination from '../utils/Pagination'
 import Filter from '../utils/Filter'
 import { useSearchParams } from 'react-router-dom'
 import Search from '../components/Search/Search'
+import { LoadingSpinner } from '../components/LoadingSpinner/LoadingSpinner'
 
 const Catalog = () => {
   const { items, loading } = useCatalog()
@@ -13,7 +14,7 @@ const Catalog = () => {
   const [filterPrice, setFilterPrice] = useState(null)
 
   const [currentPage, setCurrentPage] = useState(1)
-  const [itemsPerPage] = useState(4)
+  const [itemsPerPage] = useState(6)
 
   const search = searchParams.get('item')
 
@@ -85,63 +86,62 @@ const Catalog = () => {
         setFilterPrice={setFilterPrice}
       />
       <Search handleSearch={handleSearch} />
-      <section className="flex max-w-screen-xl gap-10 mx-auto">
-        <aside className="w-[300px] flex flex-col gap-3">
-          <div className="flex flex-col gap-3 bg-zinc-300 p-4">
-            <h1 className="text-xl text-center">Категория</h1>
-            <p
-              className="cursor-pointer"
-              onClick={() => handleFilterType('cat')}
+      <LoadingSpinner isLoading={loading} />
+      {!loading && (
+        <section className="flex max-w-screen-xl gap-10 mx-auto">
+          <aside className="w-[400px] flex flex-col gap-3">
+            <div className="flex flex-col gap-3 bg-zinc-300 p-4">
+              <h1 className="text-xl text-center">Категория</h1>
+              <p
+                className="cursor-pointer"
+                onClick={() => handleFilterType('cat')}
+              >
+                Кошки
+              </p>
+              <p
+                className="cursor-pointer"
+                onClick={() => handleFilterType('dog')}
+              >
+                Собаки
+              </p>
+              <p
+                className="cursor-pointer"
+                onClick={() => handleFilterType('fish')}
+              >
+                Рыбки
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 bg-zinc-300 p-4">
+              <h1 className="text-xl text-center">По цене</h1>
+              <p
+                className="cursor-pointer"
+                onClick={() => handleFilterPrice('400')}
+              >
+                до 400
+              </p>
+              <p
+                className="cursor-pointer"
+                onClick={() => handleFilterPrice('600')}
+              >
+                до 600
+              </p>
+              <p
+                className="cursor-pointer"
+                onClick={() => handleFilterPrice('100')}
+              >
+                до 100
+              </p>
+            </div>
+            <button
+              className="cursor-pointer p-4 bg-orange-500 mx-auto rounded-lg"
+              onClick={handleReset}
             >
-              Кошки
-            </p>
-            <p
-              className="cursor-pointer"
-              onClick={() => handleFilterType('dog')}
-            >
-              Собаки
-            </p>
-            <p
-              className="cursor-pointer"
-              onClick={() => handleFilterType('fish')}
-            >
-              Рыбки
-            </p>
-          </div>
-          <div className="flex flex-col gap-3 bg-zinc-300 p-4">
-            <h1 className="text-xl text-center">По цене</h1>
-            <p
-              className="cursor-pointer"
-              onClick={() => handleFilterPrice('400')}
-            >
-              до 400
-            </p>
-            <p
-              className="cursor-pointer"
-              onClick={() => handleFilterPrice('600')}
-            >
-              до 600
-            </p>
-            <p
-              className="cursor-pointer"
-              onClick={() => handleFilterPrice('100')}
-            >
-              до 100
-            </p>
-          </div>
-          <button
-            className="cursor-pointer p-4 bg-orange-500 mx-auto rounded-lg"
-            onClick={handleReset}
-          >
-            Сбросить фильтр
-          </button>
-        </aside>
+              Сбросить фильтр
+            </button>
+          </aside>
 
-        {loading ? (
-          <div>Loading...</div>
-        ) : (
           <div>
-            <div className="flex flex-wrap gap-4 justify-between">
+            <div className="flex flex-wrap gap-4 justify-around">
               {currentItems.map((item) => (
                 <CatalogCard
                   key={item.id}
@@ -157,8 +157,8 @@ const Catalog = () => {
               paginate={paginate}
             />
           </div>
-        )}
-      </section>
+        </section>
+      )}
     </>
   )
 }

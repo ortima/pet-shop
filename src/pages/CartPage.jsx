@@ -13,7 +13,7 @@ const CartPage = () => {
               <ul>
                 {cart.items.map((cartItem) => (
                   <li key={cartItem.product.id}>
-                    <div className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
+                    <div className="justify-between mb-6 rounded-lg bg-white p-6 shadow-lg sm:flex sm:justify-start">
                       <img
                         src={cartItem.product.imageSrc}
                         alt={cartItem.product.name}
@@ -33,7 +33,7 @@ const CartPage = () => {
                                     cartItem.quantity - 1
                                   )
                                 }
-                                className="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"
+                                className="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-orange-500 hover:text-blue-50"
                               >
                                 {' '}
                                 -{' '}
@@ -57,14 +57,14 @@ const CartPage = () => {
                                     cartItem.quantity + 1
                                   )
                                 }
-                                className="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"
+                                className="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-orange-500 hover:text-blue-50"
                               >
                                 {' '}
                                 +{' '}
                               </span>
                             </div>
                             <div className="flex items-center space-x-4">
-                              <p className="text-sm">{cartItem.price}</p>
+                              <p className="text-sm">{cartItem.price}₽</p>
                               <svg
                                 onClick={() =>
                                   removeFromCart(cartItem.product.id)
@@ -96,23 +96,25 @@ const CartPage = () => {
         <aside className="w-[300px] flex flex-col gap-3">
           <div className="rounded-lg bg-white p-4 shadow-md">
             <div className="mb-2 flex justify-between">
-              <p className="text-gray-700">Subtotal</p>
+              <p className="text-gray-700">Стоимость без скидки</p>
               <p className="text-gray-700">{cart.totalPrice}</p>
             </div>
             <div className="flex justify-between">
-              <p className="text-gray-700">Кол-во</p>
+              <p className="text-gray-700">Количество</p>
               <p className="text-gray-700">{cart.totalCount}</p>
             </div>
             <hr className="my-4" />
             <div className="flex justify-between">
-              <p className="text-lg font-bold">Total</p>
-              <div className="">
-                <p className="mb-1 text-lg font-bold">{cart.totalPrice}</p>
-                <p className="text-sm text-gray-700">including VAT</p>
+              <p className="text-lg font-bold">Общая стоимость</p>
+              <div className="flex flex-col">
+                <p className="mb-1 text-lg font-bold text-right">
+                  {cart.totalPrice}
+                </p>
+                <p className="text-sm text-gray-700">(включая НДС)</p>
               </div>
             </div>
-            <button className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
-              Check out
+            <button className="mt-6 w-full rounded-md bg-orange-500 py-1.5 font-medium text-blue-50 hover:bg-orange-600">
+              Оплатить
             </button>
           </div>
         </aside>
