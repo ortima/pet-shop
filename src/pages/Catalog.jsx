@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useCatalog } from './../context/CatalogContext'
 import CatalogCard from '../components/CatalogCard/CatalogCard'
 import Pagination from '../utils/Pagination'
@@ -10,54 +10,61 @@ import { LoadingSpinner } from '../components/LoadingSpinner/LoadingSpinner'
 const Catalog = () => {
   const { items, loading } = useCatalog()
   const [searchParams, setSearchParams] = useSearchParams()
-  const [filterType, setFilterType] = useState(null)
-  const [filterPrice, setFilterPrice] = useState(null)
-
+  const [selectedCategory, setSelectedCategory] = useState(null)
+  const [selectedType, setSelectedType] = useState(null)
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage] = useState(6)
 
-  const search = searchParams.get('item')
+  useEffect(() => {
+    // При изменении параметров поиска обновляем состояния категории и типа
+    const category = searchParams.get('category')
+    const type = searchParams.get('type')
+    setSelectedCategory(category)
+    setSelectedType(type)
+  }, [searchParams])
 
   const handleSearch = (e) => {
     setSearchParams({ item: e.target.value })
-    setFilterType(null)
-    setFilterPrice(null)
+    setSelectedCategory(null)
+    setSelectedType(null)
     setCurrentPage(1)
   }
 
+  const handleFilterCategory = (category) => {
+    setSelectedCategory(category)
+    setSearchParams((prevSearchParams) => {
+      const params = new URLSearchParams(prevSearchParams)
+      params.set('category', category)
+      return params
+    })
+  }
+
   const handleFilterType = (type) => {
-    setFilterType(type)
-    setSearchParams((prevSearchParams) => ({
-      ...prevSearchParams,
-      type: type,
-    }))
+    setSelectedType(type)
+    setSearchParams((prevSearchParams) => {
+      const params = new URLSearchParams(prevSearchParams)
+      params.set('type', type)
+      return params
+    })
   }
-
-  const handleFilterPrice = (price) => {
-    setFilterPrice(price)
-    setSearchParams((prevSearchParams) => ({
-      ...prevSearchParams,
-      price: price,
-    }))
-  }
-
   const handleReset = () => {
-    setFilterType(null)
-    setFilterPrice(null)
+    setSelectedCategory(null)
+    setSelectedType(null)
     setSearchParams({})
     setCurrentPage(1)
   }
 
   const filteredItems = items.filter((item) => {
-    // Фильтрация по типу
-    if (filterType && item.type !== filterType) {
+    // Фильтрация по категории
+    if (selectedCategory && item.category !== selectedCategory) {
       return false
     }
-    // Фильтрация по цене
-    if (filterPrice && parseFloat(item.price) > filterPrice) {
+    // Фильтрация по типу
+    if (selectedType && item.type !== selectedType) {
       return false
     }
     // Фильтрация по поисковому запросу
+    const search = searchParams.get('item')
     if (
       search &&
       !(
@@ -80,10 +87,10 @@ const Catalog = () => {
   return (
     <>
       <Filter
-        filterType={filterType}
-        filterPrice={filterPrice}
-        setFilterType={setFilterType}
-        setFilterPrice={setFilterPrice}
+        selectedCategory={selectedCategory}
+        selectedType={selectedType}
+        setSelectedCategory={setSelectedCategory}
+        setSelectedType={setSelectedType}
       />
       <Search handleSearch={handleSearch} />
       <LoadingSpinner isLoading={loading} />
@@ -94,42 +101,48 @@ const Catalog = () => {
               <h1 className="text-xl text-center">Категория</h1>
               <p
                 className="cursor-pointer"
-                onClick={() => handleFilterType('cat')}
+                onClick={() => handleFilterCategory('foods')}
               >
-                Кошки
+                Корм
               </p>
+              <p
+                className="cursor-pointer"
+                onClick={() => handleFilterCategory('toys')}
+              >
+                Игрушки
+              </p>
+              <p
+                className="cursor-pointer"
+                onClick={() => handleFilterCategory('accessories')}
+              >
+                Аксессуары
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 bg-zinc-300 p-4">
+              <h1 className="text-xl text-center">Тип</h1>
               <p
                 className="cursor-pointer"
                 onClick={() => handleFilterType('dog')}
               >
-                Собаки
+                Собака
+              </p>
+              <p
+                className="cursor-pointer"
+                onClick={() => handleFilterType('cat')}
+              >
+                Кошка
               </p>
               <p
                 className="cursor-pointer"
                 onClick={() => handleFilterType('fish')}
               >
-                Рыбки
-              </p>
-            </div>
-            <div className="flex flex-col gap-3 bg-zinc-300 p-4">
-              <h1 className="text-xl text-center">По цене</h1>
-              <p
-                className="cursor-pointer"
-                onClick={() => handleFilterPrice('400')}
-              >
-                до 400
+                Рыбка
               </p>
               <p
                 className="cursor-pointer"
-                onClick={() => handleFilterPrice('600')}
+                onClick={() => handleFilterType('bird')}
               >
-                до 600
-              </p>
-              <p
-                className="cursor-pointer"
-                onClick={() => handleFilterPrice('100')}
-              >
-                до 100
+                Птица
               </p>
             </div>
             <button
@@ -143,12 +156,7 @@ const Catalog = () => {
           <div>
             <div className="flex flex-wrap gap-4 justify-around">
               {currentItems.map((item) => (
-                <CatalogCard
-                  key={item.id}
-                  item={item}
-                  filterType={filterType}
-                  filterPrice={filterPrice}
-                />
+                <CatalogCard key={item.id} item={item} />
               ))}
             </div>
             <Pagination
