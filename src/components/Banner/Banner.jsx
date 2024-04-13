@@ -1,67 +1,78 @@
-import React, { useState } from 'react'
-import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs'
-import { RxDotFilled } from 'react-icons/rx'
+import Slider from 'react-slick'
+import { CiCircleChevLeft, CiCircleChevRight } from 'react-icons/ci'
 
 function Banner() {
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 1500,
+    autoplaySpeed: 8000,
+    cssEase: 'linear',
+    focusOnHover: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+  }
+  function SampleNextArrow(props) {
+    const { onClick } = props
+
+    return (
+      <CiCircleChevRight
+        size={40}
+        className="-right-10 top-[40%] absolute cursor-pointer text-orange-500 hover:text-orange-600 hover:scale-125"
+        onClick={onClick}
+      />
+    )
+  }
+
+  function SamplePrevArrow(props) {
+    const { onClick } = props
+    return (
+      <CiCircleChevLeft
+        size={40}
+        className="-left-10 top-[40%] absolute cursor-pointer text-orange-500 hover:text-orange-600 hover:scale-125"
+        onClick={onClick}
+      />
+    )
+  }
+
   const slides = [
     {
-      url: './hero_banner/hero-banner.jpg',
+      url: './hero_banner/1.jpg',
     },
     {
-      url: './hero_banner/hero-banner_2.jpg',
+      url: './hero_banner/2.jpg',
     },
     {
-      url: './hero_banner/banner2.jpg',
+      url: './hero_banner/3.jpg',
     },
     {
-      url: './hero_banner/banner1.jpg',
+      url: './hero_banner/4.jpg',
+    },
+    {
+      url: './hero_banner/5.png',
     },
   ]
 
-  const [currentIndex, setCurrentIndex] = useState(0)
-
-  const prevSlide = () => {
-    const isFirstSlide = currentIndex === 0
-    const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1
-    setCurrentIndex(newIndex)
-  }
-
-  const nextSlide = () => {
-    const isLastSlide = currentIndex === slides.length - 1
-    const newIndex = isLastSlide ? 0 : currentIndex + 1
-    setCurrentIndex(newIndex)
-  }
-
-  const goToSlide = (slideIndex) => {
-    setCurrentIndex(slideIndex)
-  }
-
   return (
-    <div className="max-w-screen-xl h-96 w-full m-auto py-16  relative group">
-      <div
-        style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
-        className="w-full h-full rounded-2xl bg-center bg-cover duration-500"
-      ></div>
-      {/* Left Arrow */}
-      <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
-        <BsChevronCompactLeft onClick={prevSlide} size={30} />
-      </div>
-      {/* Right Arrow */}
-      <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
-        <BsChevronCompactRight onClick={nextSlide} size={30} />
-      </div>
-      <div className="flex top-4 justify-center py-2">
-        {slides.map((slide, slideIndex) => (
+    <section>
+      <Slider {...settings} className="w-[1400px] mx-auto">
+        {slides.map((slide, index) => (
           <div
-            key={slideIndex}
-            onClick={() => goToSlide(slideIndex)}
-            className="text-2xl cursor-pointer"
+            key={index}
+            className="h-[400px] rounded-lg overflow-hidden relative"
           >
-            <RxDotFilled />
+            <img
+              src={slide.url}
+              alt="image"
+              className="w-full h-auto object-cover"
+            />
           </div>
         ))}
-      </div>
-    </div>
+      </Slider>
+    </section>
   )
 }
 
