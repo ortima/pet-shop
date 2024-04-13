@@ -7,6 +7,9 @@ import { useCatalog } from '../../context/CatalogContext'
 
 import { Link } from 'react-router-dom'
 import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner'
+import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md'
+
+import Slider from 'react-slick'
 
 const Products = () => {
   const { addToCart } = useCart()
@@ -16,6 +19,42 @@ const Products = () => {
     toast.success(`${item.name} добавлен в корзину`)
   }
   const hitItems = items.filter((item) => item.hit)
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    autoplay: false,
+    speed: 1500,
+    autoplaySpeed: 8000,
+    cssEase: 'linear',
+    focusOnHover: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+  }
+
+  function SampleNextArrow(props) {
+    const { onClick } = props
+
+    return (
+      <MdNavigateNext
+        size={40}
+        className="-right-10 top-[40%] absolute cursor-pointer text-orange-500 hover:text-orange-600 hover:scale-125"
+        onClick={onClick}
+      />
+    )
+  }
+
+  function SamplePrevArrow(props) {
+    const { onClick } = props
+    return (
+      <MdNavigateBefore
+        size={40}
+        className="-left-10 top-[40%] absolute cursor-pointer text-orange-500 hover:text-orange-600 hover:scale-125"
+        onClick={onClick}
+      />
+    )
+  }
 
   return (
     <section className={styles.products}>
@@ -24,30 +63,32 @@ const Products = () => {
       </h1>
       <LoadingSpinner isLoading={loading} />
       {!loading && (
-        <div className={styles.products_list}>
-          {hitItems.map((item) => (
-            <div className={styles.products_item} key={item.id}>
-              <div className={styles.image_container}>
-                <Link to={`/catalog/${item.id}`}>
-                  <img
-                    className={styles.products_image}
-                    src={item.imageSrc}
-                    alt={item.name}
-                  />
-                </Link>
-                <button
-                  className={styles.card_btn}
-                  onClick={() => handleAddToCart(item)}
-                >
-                  <IoBagAddOutline size={20} className={styles.svg_button} />
-                </button>
-                <div className={styles.products_details}>
-                  <div>{item.name}</div>
-                  <div>{item.price}₽</div>
+        <div className="mt-8">
+          <Slider {...settings}>
+            {hitItems.map((item) => (
+              <div key={item.id}>
+                <div className={styles.image_container}>
+                  <Link to={`/catalog/${item.id}`}>
+                    <img
+                      className={styles.products_image}
+                      src={item.imageSrc}
+                      alt={item.name}
+                    />
+                  </Link>
+                  <button
+                    className={styles.card_btn}
+                    onClick={() => handleAddToCart(item)}
+                  >
+                    <IoBagAddOutline size={20} className={styles.svg_button} />
+                  </button>
+                  <div className={styles.products_details}>
+                    <div>{item.name}</div>
+                    <div>{item.price}₽</div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </Slider>
         </div>
       )}
       <Toaster position="top-center" reverseOrder={false} />
