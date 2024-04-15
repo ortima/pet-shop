@@ -6,7 +6,6 @@ import Catalog from './pages/Catalog'
 import CartPage from './pages/CartPage'
 import { AuthContextProvider } from './context/AuthContext'
 import ContactsPage from './pages/ContactsPage'
-import Blog from './pages/Blog'
 import Login from './pages/auth/Login'
 import SignUp from './pages/auth/SignUp'
 import Account from './pages/auth/Account'
@@ -16,6 +15,8 @@ import { CatalogProvider } from './context/CatalogContext'
 import Layout from './components/Layout/Layout'
 import ItemDetail from './components/CatalogCard/itemDetail'
 import CartProvider from './context/CartContext'
+import BlogPage from './pages/BlogPage/BlogPage'
+import BlogDetail from './components/Blog/BlogDetail'
 
 const App = () => {
   return (
@@ -27,7 +28,8 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
-                <Route path="blog" element={<Blog />} />
+                <Route path="blog" element={<BlogPage />} />
+                <Route path="blog/post/:blogId" element={<BlogDetail />} />
                 <Route path="catalog" element={<Catalog />} />
                 <Route path="catalog/:itemId" element={<ItemDetail />} />
                 <Route path="contacts" element={<ContactsPage />} />
