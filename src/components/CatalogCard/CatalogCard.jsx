@@ -44,7 +44,7 @@ const CatalogCard = ({ item, filterType, filterPrice }) => {
               onClick={() => {
                 handleAddToCart(item)
               }}
-              className="text-black bg-white border-2 border-black hover:bg-orange-500 hover:text-white hover:border-none font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+              className="text-white px-5 py-2 rounded-[50px] font-semibold transition-all duration-75 bg-orange-500 hover:bg-black hover:scale-110"
             >
               Добавить
             </button>

@@ -1,6 +1,3 @@
-/* eslint-disable react/prop-types */
-import React from 'react'
-
 const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
   const pageNumbers = []
 
@@ -9,12 +6,14 @@ const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
   }
 
   return (
-    <ul className="flex justify-center">
+    <ul className="flex justify-center gap-3">
       {pageNumbers.map((number) => (
-        <li key={number} className="p-4 border-indigo-500 border-2">
-          <button onClick={() => paginate(number)} className="page-link">
-            {number}
-          </button>
+        <li
+          key={number}
+          className="p-4 border-orange-500 rounded-lg border-2 cursor-pointer hover:bg-orange-500 hover:text-white"
+          onClick={() => paginate(number)}
+        >
+          <div className="page-link">{number}</div>
         </li>
       ))}
     </ul>

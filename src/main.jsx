@@ -17,6 +17,7 @@ import ItemDetail from './components/CatalogCard/itemDetail'
 import CartProvider from './context/CartContext'
 import BlogPage from './pages/BlogPage/BlogPage'
 import BlogDetail from './components/Blog/BlogDetail'
+import Checkout from './pages/Checkout'
 
 const App = () => {
   return (
@@ -32,11 +33,12 @@ const App = () => {
                 <Route path="blog/post/:blogId" element={<BlogDetail />} />
                 <Route path="catalog" element={<Catalog />} />
                 <Route path="catalog/:itemId" element={<ItemDetail />} />
+                <Route path="checkout" element={<Checkout />} />
                 <Route path="contacts" element={<ContactsPage />} />
                 <Route path="cart" element={<CartPage />} />
                 <Route path="*" element={<NotFound />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<SignUp />} />
+                <Route path="login" element={<Login />} />
+                <Route path="signup" element={<SignUp />} />
               </Route>
               <Route
                 path="/account"

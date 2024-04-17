@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 
 const Search = ({ handleSearch }) => {
   return (
-    <form className="max-w-md mx-auto mt-5">
+    <form className="min-w-[24rem]">
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
