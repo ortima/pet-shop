@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom'
 const Category = () => {
   return (
     <section className="font-semibold text-center">
-      <h1 className="text-2xl">
-        <span>Топовые</span> категории
-      </h1>
+      <div className="text-center mx-auto mb-[60px] lg:mb-20 max-w-[510px]">
+        <h2 className="font-bold text-3xl sm:text-4xl md:text-[30px] text-dark mb-4">
+          <span className="text-primary">Топовые</span> категории
+        </h2>
+      </div>
       <div className="mt-[30px]">
         <ul className="flex justify-between items-center mt-[30px]">
           {categories.map((category, index) => (

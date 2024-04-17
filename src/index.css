@@ -82,10 +82,6 @@ address {
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
-.container {
-  padding-inline: 40px;
-}
-
 section {
   padding-block: var(--section-margin);
 }

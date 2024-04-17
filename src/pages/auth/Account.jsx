@@ -1,7 +1,5 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserAuth } from '../../context/AuthContext'
-import Header from '../../components/Header/Header'
 
 const Account = () => {
   const { user, logout } = UserAuth()

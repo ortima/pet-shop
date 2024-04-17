@@ -1,4 +1,3 @@
-import React from 'react'
 import { fs } from '../../config/config'
 import { collection, addDoc } from 'firebase/firestore'
 import { useNavigate } from 'react-router-dom'
@@ -9,8 +8,6 @@ import { UserAuth } from '../../context/AuthContext'
 import toast, { Toaster } from 'react-hot-toast'
 
 import { CiLock } from 'react-icons/ci'
-
-import Header from '../../components/Header/Header'
 
 const SignUp = () => {
   const [fullName, setFullname] = useState('')

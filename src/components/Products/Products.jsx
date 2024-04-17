@@ -58,9 +58,11 @@ const Products = () => {
 
   return (
     <section className={styles.products}>
-      <h1 className="text-2xl">
-        <span>Хит</span> продаж
-      </h1>
+      <div className="text-center mx-auto mb-[60px] lg:mb-20 max-w-[510px]">
+        <h2 className="font-bold text-3xl sm:text-4xl md:text-[30px] text-dark mb-4">
+          <span className="text-primary">Хит</span> продаж
+        </h2>
+      </div>
       <LoadingSpinner isLoading={loading} />
       {!loading && (
         <div className="mt-8">

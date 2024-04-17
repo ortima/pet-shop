@@ -17,10 +17,13 @@ const FAQList = () => {
   return (
     <section className={styles.container}>
       <img src={logo} alt="logo" />
+      <div className="text-center mx-auto mb-[60px] lg:mb-20 max-w-[610px]">
+        <h2 className="font-bold text-3xl sm:text-4xl md:text-[30px] text-dark mb-4">
+          Почему выбирают зоомагазин
+          <span className="text-primary">«Природа»</span>?
+        </h2>
+      </div>
       <div className={styles.content}>
-        <h1 className="text-2xl text-center font-bold">
-          Почему выбирают зоомагазин <span>«Природа»</span>?
-        </h1>
         <p className={styles.subtitle}>
           «Природа» – крупнейшая сеть зоомагазинов и интернет-магазин с
           доставкой по всей России. На сайте priroda-zoo.ru представлен широкий
