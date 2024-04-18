@@ -97,7 +97,10 @@ const Header = () => {
           <div className="flex gap-3 items-center">
             <div className="cursor-pointer relative">
               <Link to="/cart">
-                <AiTwotoneShopping size={30} />
+                <AiTwotoneShopping
+                  size={30}
+                  className="hover:scale-110 transition-all duration-400 ease-in"
+                />
                 {cart.totalCount > 0 && (
                   <span className="absolute w-5 h-5 bottom-5 left-4  font-semibold flex items-center justify-center text-white text-xs bg-orange-500 rounded-full">
                     {cart.totalCount}
@@ -106,11 +109,14 @@ const Header = () => {
               </Link>
             </div>{' '}
             <div
-              className="cursor-pointer w-fit p-1 hover:bg-slate-300 rounded-full"
+              className="cursor-pointer w-fit p-1"
               onClick={() => setIsPopUpOpen(!isPopUpOpen)}
             >
               <div>
-                <RxAvatar size={30} className="relative" />
+                <RxAvatar
+                  size={30}
+                  className="hover:scale-110 transition-all duration-400 ease-in relative"
+                />
                 {isPopUpOpen && <PopUp />}
               </div>
             </div>
