@@ -25,7 +25,7 @@ const Products = () => {
     slidesToShow: 5,
     slidesToScroll: 1,
     autoplay: false,
-    speed: 1500,
+    speed: 800,
     autoplaySpeed: 8000,
     cssEase: 'linear',
     focusOnHover: true,
