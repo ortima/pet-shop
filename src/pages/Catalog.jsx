@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useCatalog } from './../context/CatalogContext'
+import { useCatalog } from '../context/CatalogContext'
 import CatalogCard from '../components/CatalogCard/CatalogCard'
 import Pagination from '../components/Pagination/Pagination'
 import { useSearchParams } from 'react-router-dom'
@@ -7,6 +7,7 @@ import Search from '../components/Search/Search'
 import { LoadingSpinner } from '../components/LoadingSpinner/LoadingSpinner'
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
 import { GrPowerReset } from 'react-icons/gr'
+import React from 'react'
 
 const Catalog = () => {
   const { items, loading } = useCatalog()

@@ -1,3 +1,4 @@
+import React from 'react'
 import Category from '../components/Category/Category'
 import Articles from '../components/Articles/Articles'
 import Products from '../components/Products/Products'
