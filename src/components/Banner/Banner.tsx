@@ -1,5 +1,10 @@
+import React from 'react'
 import Slider from 'react-slick'
 import { CiCircleChevLeft, CiCircleChevRight } from 'react-icons/ci'
+
+interface ArrowProps {
+  onClick?: () => void
+}
 
 function Banner() {
   const settings = {
@@ -15,7 +20,7 @@ function Banner() {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   }
-  function SampleNextArrow(props) {
+  function SampleNextArrow(props: ArrowProps) {
     const { onClick } = props
 
     return (
@@ -27,7 +32,7 @@ function Banner() {
     )
   }
 
-  function SamplePrevArrow(props) {
+  function SamplePrevArrow(props: ArrowProps) {
     const { onClick } = props
     return (
       <CiCircleChevLeft

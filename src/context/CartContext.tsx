@@ -1,16 +1,26 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import React, {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
+import { Product, CartItem, CartContextType } from './types/cartTypes'
 
-const CartContext = createContext(null)
-const EMPTY_CART = {
+const CartContext = createContext<CartContextType | {}>({})
+const EMPTY_CART: CartContextType['cart'] = {
   items: [],
   totalPrice: 0,
   totalCount: 0,
 }
+interface CartProviderProps {
+  children: ReactNode
+}
 
-export default function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useState(EMPTY_CART.items)
-  const [totalPrice, setTotalPrice] = useState(EMPTY_CART.totalPrice)
-  const [totalCount, setTotalCount] = useState(EMPTY_CART.totalCount)
+export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
+  const [cartItems, setCartItems] = useState<CartItem[]>(EMPTY_CART.items)
+  const [totalPrice, setTotalPrice] = useState<number>(EMPTY_CART.totalPrice)
+  const [totalCount, setTotalCount] = useState<number>(EMPTY_CART.totalCount)
 
   useEffect(() => {
     const totalPrice = sum(cartItems.map((item) => item.price))
@@ -19,11 +29,11 @@ export default function CartProvider({ children }) {
     setTotalCount(totalCount)
   }, [cartItems])
 
-  const sum = (items) => {
+  const sum = (items: number[]) => {
     return items.reduce((prevValue, curValue) => prevValue + curValue, 0)
   }
 
-  const addToCart = (product) => {
+  const addToCart = (product: Product) => {
     const cartItem = cartItems.find((item) => item.product.id === product.id)
     if (cartItem) {
       changeQuantity(cartItem, cartItem.quantity + 1)
@@ -35,14 +45,14 @@ export default function CartProvider({ children }) {
     }
   }
 
-  const removeFromCart = (productId) => {
+  const removeFromCart = (productId: string) => {
     const filteredCartItems = cartItems.filter(
       (item) => item.product.id !== productId
     )
     setCartItems(filteredCartItems)
   }
 
-  const changeQuantity = (cartItem, newQuantity) => {
+  const changeQuantity = (cartItem: CartItem, newQuantity: number) => {
     const { product } = cartItem
 
     if (newQuantity === 0) {

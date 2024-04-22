@@ -1,13 +1,14 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import styles from './FAQ.module.scss'
 import faqData from '../../Data/faqData'
+import { FaqData } from '../../types/types'
 
 import logo from '/logo_test.png'
 
-const FAQList = () => {
-  const [isOpen, setIsOpen] = useState({})
+const FAQList: React.FC = () => {
+  const [isOpen, setIsOpen] = useState<{ [key: number]: boolean }>({})
 
-  const toggleAnswer = (index) => {
+  const toggleAnswer = (index: number) => {
     setIsOpen((prevState) => ({
       ...prevState,
       [index]: !prevState[index],
@@ -33,7 +34,7 @@ const FAQList = () => {
         </p>
       </div>
       <div className={styles.faq_list}>
-        {faqData.map((item, index) => (
+        {faqData.map((item: FaqData, index: number) => (
           <div
             key={index}
             className={`${styles['faq-item']} ${

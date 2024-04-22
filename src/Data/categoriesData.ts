@@ -1,6 +1,12 @@
 // const basename = import.meta.env.BASE_URL || '/'
 
-const categories = [
+interface Categories {
+  src?: string
+  text: string
+  url: string
+}
+
+const categories: Categories[] = [
   {
     src: `/category/category-1.jpg`,
     text: 'Еда для кошек',

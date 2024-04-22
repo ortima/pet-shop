@@ -1,7 +1,8 @@
+import React from 'react'
 import EmptyCart from '/empty_cart.png'
 import { Link } from 'react-router-dom'
 
-const CartEmpty = () => {
+const CartEmpty: React.FC = () => {
   return (
     <section className="flex flex-col items-center gap-4">
       <div className="text-center mx-auto mb-[20px] lg:mb-4 max-w-[510px]">

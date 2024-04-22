@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const NotFound = () => {
+const NotFound: React.FC = () => {
   return (
     <>
       <h1>Ошибка, скорее всего неправильный адрес</h1>

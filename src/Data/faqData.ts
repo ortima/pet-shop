@@ -1,4 +1,6 @@
-const faqData = [
+import { FaqData } from '../types/types'
+
+const faqData: FaqData[] = [
   {
     question: 'Какой широкий ассортимент зоотоваров предлагает ваш магазин?',
     answer:

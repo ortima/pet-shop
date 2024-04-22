@@ -1,6 +1,12 @@
 // const basename = import.meta.env.BASE_URL || '/'
+interface Advantages {
+  id: number
+  src?: string
+  title: string
+  description: string
+}
 
-const advantages = [
+const advantages: Advantages[] = [
   {
     id: 1,
     src: '/advantages/bonus-program.svg',

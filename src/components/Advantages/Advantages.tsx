@@ -1,7 +1,8 @@
+import React from 'react'
 import styles from './Advantages.module.scss'
 import advantages from '../../Data/advantagesData'
 
-const Advantages = () => {
+const Advantages: React.FC = () => {
   return (
     <section className={styles.advantages}>
       {advantages.map((advantage) => (

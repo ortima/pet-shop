@@ -8,11 +8,10 @@ import Advantages from '../components/Advantages/Advantages'
 
 import '../index.css'
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <>
       <Banner />
-
       <Category />
       <Articles />
       <Products />
