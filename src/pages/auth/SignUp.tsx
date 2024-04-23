@@ -1,13 +1,14 @@
+import React, { FormEvent } from 'react'
 import { fs } from '../../config/config'
 import { collection, addDoc } from 'firebase/firestore'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { UserAuth } from '../../context/AuthContext'
-
 import toast, { Toaster } from 'react-hot-toast'
 
 import { CiLock } from 'react-icons/ci'
+import { AuthContextType } from '../../context/types/authTypes'
 
 const SignUp = () => {
   const [fullName, setFullname] = useState('')
@@ -15,10 +16,10 @@ const SignUp = () => {
   const [password, setPassword] = useState('')
 
   const [error, setError] = useState('')
-  const { createUser } = UserAuth()
+  const { createUser } = UserAuth() as AuthContextType
   const navigate = useNavigate()
 
-  const handleSignup = async (e) => {
+  const handleSignup = async (e: FormEvent) => {
     e.preventDefault()
     setError('')
     try {
@@ -31,7 +32,7 @@ const SignUp = () => {
         await createCollection()
         navigate('/')
       }
-    } catch (e) {
+    } catch (e: any) {
       setError(e.message)
       toast.error(e.message)
     }

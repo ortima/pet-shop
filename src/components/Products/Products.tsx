@@ -1,9 +1,11 @@
+import React from 'react'
 import styles from './Products.module.scss'
 
 import toast, { Toaster } from 'react-hot-toast'
 import { IoBagAddOutline } from 'react-icons/io5'
 import { useCart } from '../../context/CartContext'
 import { useCatalog } from '../../context/CatalogContext'
+import { CartContextType, Product } from '../../context/types/cartTypes'
 
 import { Link } from 'react-router-dom'
 import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner'
@@ -11,13 +13,37 @@ import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md'
 
 import Slider from 'react-slick'
 
-const Products = () => {
-  const { addToCart } = useCart()
+interface ArrowProps {
+  onClick?: () => void
+}
+const SampleNextArrow: React.FC<ArrowProps> = ({ onClick }) => {
+  return (
+    <MdNavigateNext
+      size={40}
+      className="-right-10 top-[40%] absolute cursor-pointer text-orange-500 hover:text-orange-600 hover:scale-125"
+      onClick={onClick}
+    />
+  )
+}
+
+const SamplePrevArrow: React.FC<ArrowProps> = ({ onClick }) => {
+  return (
+    <MdNavigateBefore
+      size={40}
+      className="-left-10 top-[40%] absolute cursor-pointer text-orange-500 hover:text-orange-600 hover:scale-125"
+      onClick={onClick}
+    />
+  )
+}
+
+const Products: React.FC = () => {
+  const { addToCart } = useCart() as CartContextType
   const { items, loading } = useCatalog()
-  const handleAddToCart = (item) => {
+  const handleAddToCart = (item: Product) => {
     addToCart(item)
     toast.success(`${item.name} добавлен в корзину`)
   }
+
   const hitItems = items.filter((item) => item.hit)
   const settings = {
     dots: true,
@@ -31,29 +57,6 @@ const Products = () => {
     focusOnHover: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
-  }
-
-  function SampleNextArrow(props) {
-    const { onClick } = props
-
-    return (
-      <MdNavigateNext
-        size={40}
-        className="-right-10 top-[40%] absolute cursor-pointer text-orange-500 hover:text-orange-600 hover:scale-125"
-        onClick={onClick}
-      />
-    )
-  }
-
-  function SamplePrevArrow(props) {
-    const { onClick } = props
-    return (
-      <MdNavigateBefore
-        size={40}
-        className="-left-10 top-[40%] absolute cursor-pointer text-orange-500 hover:text-orange-600 hover:scale-125"
-        onClick={onClick}
-      />
-    )
   }
 
   return (

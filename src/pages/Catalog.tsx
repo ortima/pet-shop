@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useCatalog } from '../context/CatalogContext'
 import CatalogCard from '../components/CatalogCard/CatalogCard'
 import Pagination from '../components/Pagination/Pagination'
@@ -7,35 +7,54 @@ import Search from '../components/Search/Search'
 import { LoadingSpinner } from '../components/LoadingSpinner/LoadingSpinner'
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
 import { GrPowerReset } from 'react-icons/gr'
-import React from 'react'
+import { CatalogItem } from '../context/types/catalogTypes'
 
-const Catalog = () => {
+interface CatalogState {
+  selectedCategory: string | null
+  selectedType: string | null
+  currentPage: number
+  itemsPerPage: number
+  showCategoryModal: boolean
+  showTypeModal: boolean
+}
+
+const Catalog: React.FC = () => {
   const { items, loading } = useCatalog()
   const [searchParams, setSearchParams] = useSearchParams()
-  const [selectedCategory, setSelectedCategory] = useState(null)
-  const [selectedType, setSelectedType] = useState(null)
-  const [currentPage, setCurrentPage] = useState(1)
-  const [itemsPerPage] = useState(6)
-
-  const [showCategoryModal, setShowCategoryModal] = useState(true)
-  const [showTypeModal, setShowTypeModal] = useState(false)
+  const [state, setState] = useState<CatalogState>({
+    selectedCategory: null,
+    selectedType: null,
+    currentPage: 1,
+    itemsPerPage: 6,
+    showCategoryModal: true,
+    showTypeModal: false,
+  })
 
   useEffect(() => {
     const category = searchParams.get('category')
     const type = searchParams.get('type')
-    setSelectedCategory(category)
-    setSelectedType(type)
+    setState((prevState) => ({
+      ...prevState,
+      selectedCategory: category,
+      selectedType: type,
+    }))
   }, [searchParams])
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchParams({ item: e.target.value })
-    setSelectedCategory(null)
-    setSelectedType(null)
-    setCurrentPage(1)
+    setState((prevState) => ({
+      ...prevState,
+      selectedCategory: null,
+      selectedType: null,
+      currentPage: 1,
+    }))
   }
 
-  const handleFilterCategory = (category) => {
-    setSelectedCategory(category)
+  const handleFilterCategory = (category: string) => {
+    setState((prevState) => ({
+      ...prevState,
+      selectedCategory: category,
+    }))
     setSearchParams((prevSearchParams) => {
       const params = new URLSearchParams(prevSearchParams)
       params.set('category', category)
@@ -43,8 +62,11 @@ const Catalog = () => {
     })
   }
 
-  const handleFilterType = (type) => {
-    setSelectedType(type)
+  const handleFilterType = (type: string) => {
+    setState((prevState) => ({
+      ...prevState,
+      selectedType: type,
+    }))
     setSearchParams((prevSearchParams) => {
       const params = new URLSearchParams(prevSearchParams)
       params.set('type', type)
@@ -53,17 +75,22 @@ const Catalog = () => {
   }
 
   const handleReset = () => {
-    setSelectedCategory(null)
-    setSelectedType(null)
+    setState({
+      selectedCategory: null,
+      selectedType: null,
+      currentPage: 1,
+      itemsPerPage: 6,
+      showCategoryModal: true,
+      showTypeModal: false,
+    })
     setSearchParams({})
-    setCurrentPage(1)
   }
 
   const filteredItems = items.filter((item) => {
-    if (selectedCategory && item.category !== selectedCategory) {
+    if (state.selectedCategory && item.category !== state.selectedCategory) {
       return false
     }
-    if (selectedType && item.type !== selectedType) {
+    if (state.selectedType && item.type !== state.selectedType) {
       return false
     }
     const search = searchParams.get('item')
@@ -80,11 +107,12 @@ const Catalog = () => {
     return true
   })
 
-  const indexOfLastItem = currentPage * itemsPerPage
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage
+  const indexOfLastItem = state.currentPage * state.itemsPerPage
+  const indexOfFirstItem = indexOfLastItem - state.itemsPerPage
   const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem)
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber)
+  const paginate = (pageNumber: number) =>
+    setState((prevState) => ({ ...prevState, currentPage: pageNumber }))
 
   const filterOptions = [
     { label: 'Корм', value: 'foods' },
@@ -122,12 +150,21 @@ const Catalog = () => {
             <div className="flex flex-col gap-3 p-4">
               <div
                 className="flex justify-between items-center border-b-2 py-2 cursor-pointer"
-                onClick={() => setShowCategoryModal(!showCategoryModal)}
+                onClick={() =>
+                  setState((prevState) => ({
+                    ...prevState,
+                    showCategoryModal: !prevState.showCategoryModal,
+                  }))
+                }
               >
                 <h1 className="text-xl text-center">Категория</h1>
-                {showCategoryModal ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                {state.showCategoryModal ? (
+                  <IoIosArrowUp />
+                ) : (
+                  <IoIosArrowDown />
+                )}
               </div>
-              <div className={showCategoryModal ? `visible` : `hidden`}>
+              <div className={state.showCategoryModal ? `visible` : `hidden`}>
                 {filterOptions.map((option) => (
                   <p
                     key={option.value}
@@ -142,12 +179,17 @@ const Catalog = () => {
             <div className="flex flex-col gap-3 p-4">
               <div
                 className="flex justify-between items-center border-b-2 py-2 cursor-pointer"
-                onClick={() => setShowTypeModal(!showTypeModal)}
+                onClick={() =>
+                  setState((prevState) => ({
+                    ...prevState,
+                    showTypeModal: !prevState.showTypeModal,
+                  }))
+                }
               >
                 <h1 className="text-xl text-center">Тип</h1>
-                {showTypeModal ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                {state.showTypeModal ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </div>
-              <div className={showTypeModal ? `visible` : `hidden`}>
+              <div className={state.showTypeModal ? `visible` : `hidden`}>
                 {typeOptions.map((option) => (
                   <p
                     key={option.value}
@@ -171,12 +213,16 @@ const Catalog = () => {
 
           <div>
             <div className="flex flex-wrap gap-12 justify-start mb-4">
-              {currentItems.map((item) => (
-                <CatalogCard key={item.id} item={item} />
+              {currentItems.map((item: CatalogItem) => (
+                <CatalogCard
+                  key={item.id}
+                  item={item}
+                  filterType={state.selectedType}
+                />
               ))}
             </div>
             <Pagination
-              itemsPerPage={itemsPerPage}
+              itemsPerPage={state.itemsPerPage}
               totalItems={filteredItems.length}
               paginate={paginate}
             />

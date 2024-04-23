@@ -1,7 +1,9 @@
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner'
+import { BlogData } from '../../types/types'
 
-export const Blog = ({ blogs, loading }) => {
+export const Blog: React.FC<BlogData> = ({ blogs, loading }) => {
   return (
     <>
       <LoadingSpinner isLoading={loading} />

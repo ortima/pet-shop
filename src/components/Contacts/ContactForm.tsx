@@ -38,7 +38,6 @@ const ContactForm = () => {
           </label>
           <textarea
             rows={4}
-            type="text"
             className="w-full px-3 p-2 border rounded-lg bg-white focus:border-blue-500"
           />
         </div>

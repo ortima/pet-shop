@@ -1,18 +1,22 @@
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { useCart } from '../../context/CartContext'
 import toast, { Toaster } from 'react-hot-toast'
-const CatalogCard = ({ item, filterType, filterPrice }) => {
-  const { addToCart } = useCart()
+import { CatalogItem } from '../../context/types/catalogTypes'
+import { CartContextType } from '../../context/types/cartTypes'
+
+interface CatalogCardProps {
+  item: CatalogItem
+  filterType?: string | null
+}
+
+const CatalogCard: React.FC<CatalogCardProps> = ({ item, filterType }) => {
+  const { addToCart } = useCart() as CartContextType
   if (filterType && item.type !== filterType) {
     return null
   }
 
-  const itemPrice = parseFloat(item.price)
-  if (filterPrice && itemPrice > filterPrice) {
-    return null
-  }
-
-  const handleAddToCart = (item) => {
+  const handleAddToCart = (item: CatalogItem) => {
     addToCart(item)
     toast.success(`${item.name} добавлен в корзину`)
   }

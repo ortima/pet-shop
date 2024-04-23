@@ -1,18 +1,20 @@
+import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useBlogData } from '../../hooks/useBlogData'
 
 import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner'
+import { BlogData } from '../../types/types'
 
-const BlogDetail = () => {
-  const { blogId } = useParams()
-  const { loading, blogs } = useBlogData()
+const BlogDetail: React.FC = () => {
+  const { blogId } = useParams<{ blogId: string }>()
+  const { loading, blogs } = useBlogData() as BlogData
 
   const blog = blogs.find((blog) => blog.id === blogId)
-  console.log(blog)
+
   return (
     <>
       <LoadingSpinner isLoading={loading} />
-      {!loading && (
+      {!loading && blog && (
         <main className="mt-10">
           <div className="mb-4 md:mb-0 w-full mx-auto relative">
             <div className="px-4 lg:px-0">

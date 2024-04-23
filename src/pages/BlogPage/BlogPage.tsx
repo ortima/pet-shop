@@ -1,7 +1,8 @@
+import React from 'react'
 import { Blog } from '../../components/Blog/Blog'
 import { useBlogData } from '../../hooks/useBlogData'
 
-const BlogPage = () => {
+const BlogPage: React.FC = () => {
   const { blogs, loading } = useBlogData()
   return (
     <section className="relative py-20 overflow-hidden">

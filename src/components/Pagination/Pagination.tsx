@@ -1,4 +1,11 @@
-const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
+import React from 'react'
+import { PaginationProps } from '../../types/types'
+
+const Pagination: React.FC<PaginationProps> = ({
+  itemsPerPage,
+  totalItems,
+  paginate,
+}) => {
   const pageNumbers = []
 
   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {

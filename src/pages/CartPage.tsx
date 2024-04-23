@@ -1,8 +1,10 @@
+import React from 'react'
 import CartEmpty from '../components/Cart/CartEmpty'
 import { useCart } from '../context/CartContext'
+import { CartContextType } from '../context/types/cartTypes'
 
-const CartPage = () => {
-  const { cart, removeFromCart, changeQuantity } = useCart()
+const CartPage: React.FC = () => {
+  const { cart, removeFromCart, changeQuantity } = useCart() as CartContextType
 
   return (
     <>

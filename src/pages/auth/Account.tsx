@@ -1,8 +1,10 @@
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserAuth } from '../../context/AuthContext'
+import { AuthContextType } from '../../context/types/authTypes'
 
-const Account = () => {
-  const { user, logout } = UserAuth()
+const Account: React.FC = () => {
+  const { user, logout } = UserAuth() as AuthContextType
   const navigate = useNavigate()
 
   const handleLogout = async () => {
@@ -10,7 +12,7 @@ const Account = () => {
       await logout()
       navigate('/')
       console.log('You are logged out')
-    } catch (e) {
+    } catch (e: any) {
       console.log(e.message)
     }
   }

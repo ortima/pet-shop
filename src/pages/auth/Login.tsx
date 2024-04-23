@@ -1,16 +1,20 @@
+import React, { FormEvent } from 'react'
 import { useState } from 'react'
 import { UserAuth } from '../../context/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
 import { VscSignIn } from 'react-icons/vsc'
 import toast, { Toaster } from 'react-hot-toast'
+import { AuthContextType } from '../../context/types/authTypes'
+
+interface Props {}
 
 export default function Login() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
   const navigate = useNavigate()
-  const { signIn } = UserAuth()
+  const { signIn } = UserAuth() as AuthContextType
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     const promise = signIn(email, password)
     toast.promise(promise, {

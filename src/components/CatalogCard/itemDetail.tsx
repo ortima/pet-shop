@@ -1,16 +1,19 @@
+import React from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useCatalog } from '../../context/CatalogContext'
 import { useCart } from '../../context/CartContext'
+import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner'
+import { CartContextType } from '../../context/types/cartTypes'
 
-const ItemDetail = () => {
+const ItemDetail: React.FC = () => {
   const { items } = useCatalog()
   const { itemId } = useParams()
-  const { addToCart } = useCart()
+  const { addToCart } = useCart() as CartContextType
 
   const item = items.find((item) => item.id === itemId)
 
   if (!item) {
-    return <div>Загрузка...</div>
+    return <LoadingSpinner isLoading={true} />
   }
 
   return (

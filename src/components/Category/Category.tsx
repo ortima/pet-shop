@@ -1,5 +1,6 @@
 import categories from '../../Data/categoriesData'
 import { Link } from 'react-router-dom'
+import React from 'react'
 
 const Category = () => {
   return (
@@ -12,7 +13,7 @@ const Category = () => {
       <div className="mt-[30px]">
         <ul className="flex justify-between items-center mt-[30px]">
           {categories.map((category, index) => (
-            <div key={index} className="">
+            <div key={index}>
               <Link
                 to={category.url}
                 className="flex flex-col items-center justify-center overflow-hidden transition-all duration-500 ease-in gap-7"

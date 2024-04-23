@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react'
 import { fs } from '../config/config'
 import { getDownloadURL, getStorage, ref } from 'firebase/storage'
 import { collection, getDocs } from 'firebase/firestore'
+import { Blog, BlogData } from '../types/types'
 
-export const useBlogData = () => {
-  const [blogs, setBlogs] = useState([])
-  const [loading, setLoading] = useState(true)
+export const useBlogData = (): BlogData => {
+  const [blogs, setBlogs] = useState<Blog[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     const getBlogData = async () => {
@@ -26,7 +27,7 @@ export const useBlogData = () => {
             const date = new Date(timestamp.seconds * 1000)
             data.publish_time = date.toLocaleDateString()
           }
-          return { id: doc.id, ...data }
+          return { id: doc.id, ...data } as Blog
         })
         const resolvedBlogData = await Promise.all(blogData)
         setBlogs(resolvedBlogData)

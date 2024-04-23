@@ -1,6 +1,13 @@
+import React from 'react'
 import { ColorRing } from 'react-loader-spinner'
 
-export const LoadingSpinner = ({ isLoading }) => {
+interface LoadingSpinnerProps {
+  isLoading: boolean
+}
+
+export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
+  isLoading,
+}) => {
   return (
     isLoading && (
       <div className="flex justify-center items-center">

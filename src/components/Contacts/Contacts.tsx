@@ -1,3 +1,4 @@
+import React from 'react'
 import { BsGeoAltFill, BsTelephone } from 'react-icons/bs'
 import { IoIosMail } from 'react-icons/io'
 import { IoShareSocialOutline } from 'react-icons/io5'

@@ -1,6 +1,10 @@
-import PropTypes from 'prop-types'
+import React from 'react'
 
-const Search = ({ handleSearch }) => {
+interface SearchProps {
+  handleSearch: React.ChangeEventHandler<HTMLInputElement>
+}
+
+const Search: React.FC<SearchProps> = ({ handleSearch }) => {
   return (
     <form className="min-w-[24rem]">
       <label
@@ -39,9 +43,6 @@ const Search = ({ handleSearch }) => {
       </div>
     </form>
   )
-}
-Search.propTypes = {
-  handleSearch: PropTypes.func.isRequired,
 }
 
 export default Search

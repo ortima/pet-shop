@@ -1,3 +1,4 @@
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
@@ -10,9 +11,11 @@ import { UserAuth } from '../../context/AuthContext'
 import { GiExitDoor } from 'react-icons/gi'
 import toast, { Toaster } from 'react-hot-toast'
 import { useCart } from '../../context/CartContext'
+import { CartContextType } from '../../context/types/cartTypes'
+import { AuthContextType } from '../../context/types/authTypes'
 
-const PopUp = () => {
-  const { user, logout } = UserAuth()
+const PopUp: React.FC = () => {
+  const { user, logout } = UserAuth() as AuthContextType
   return (
     <div className="absolute bg-slate-100 right-14 top-20 rounded-b-md border-x-2 border-b-2 border-black">
       <Toaster position="top-center" reverseOrder={false} />
@@ -69,7 +72,7 @@ const PopUp = () => {
 
 const Header = () => {
   const [isPopUpOpen, setIsPopUpOpen] = useState(false)
-  const { cart } = useCart()
+  const { cart } = useCart() as CartContextType
   return (
     <header className="sticky top-0 z-10">
       <div className="w-full h-20 bg-white border-b-2 border-b-gray-800">

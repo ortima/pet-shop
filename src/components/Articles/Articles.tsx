@@ -1,8 +1,9 @@
+import React from 'react'
 import { useBlogData } from '../../hooks/useBlogData'
 import { Link } from 'react-router-dom'
 import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner'
 
-const Articles = () => {
+const Articles: React.FC = () => {
   const { blogs, loading } = useBlogData()
 
   return (

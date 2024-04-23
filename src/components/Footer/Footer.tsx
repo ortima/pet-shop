@@ -1,3 +1,4 @@
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { FaFacebook, FaGithub, FaInstagram, FaTwitter } from 'react-icons/fa'
 import footerImg from '/footer/footer-bg.jpg'
@@ -51,7 +52,7 @@ const SocialLinks = [
     link: '#',
   },
 ]
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <>
       <footer
