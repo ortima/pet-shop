@@ -9,6 +9,8 @@ export interface Blog {
   content: string
   header_image?: string
   publish_time?: string
+  tag?: []
+  desc?: string[]
 }
 
 export interface BlogData {
